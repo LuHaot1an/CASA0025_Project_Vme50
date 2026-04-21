@@ -32,6 +32,7 @@ It combines spatial exploration with borough-level comparison, allowing users to
 
 [View the source code on GitHub](https://github.com/LuHaot1an/CASA0025_Project_Vme50)
 
+
 ::: {.callout-tip appearance="simple"}
 
 ## Start exploring
@@ -74,8 +75,7 @@ These indicators are aggregated at borough level to enable comparison across Lon
 
 The interface combines an interactive map, control panel, and summary outputs to support a simple analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.
 
-They can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts provide comparative insights, allowing users to move from spatial exploration to analytical understanding.
-
+They can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts on the project webpage provide borough-level comparison, allowing users to move from spatial exploration in the map to broader analytical interpretation.
 ## Interactive Map
 
 Explore spatial patterns of urban growth and environmental cost across London.
@@ -326,4 +326,4 @@ Uncertainty may arise from land-cover classification, temporal resolution, and t
 
 The growth cost index should therefore be interpreted as a diagnostic and comparative measure rather than an absolute representation of environmental impact.
 
-```
+
