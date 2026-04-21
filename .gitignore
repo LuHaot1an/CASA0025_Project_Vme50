@@ -1,8 +1,11 @@
-
-# macOS
+.venv/
+__pycache__/
 .DS_Store
-**/.DS_Store
-
-# R
+*.pyc
+.quarto/
+_site/
 .Rhistory
-**/.Rhistory
+.vscode/
+docs/index_files/
+docs/site_libs/
+index.quarto_ipynb*

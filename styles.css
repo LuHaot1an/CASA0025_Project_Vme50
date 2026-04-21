@@ -1,0 +1,80 @@
+
+body {
+  line-height: 1.7;
+}
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.2rem;
+}
+
+p {
+  font-size: 1.05rem;
+}
+
+iframe,
+.plotly,
+.js-plotly-plot,
+.quarto-figure {
+  margin-top: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+.callout {
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+}
+
+.callout.callout-tip {
+  border-left: 0.3rem solid #39b51d;
+}
+
+.callout.callout-note {
+  border-left: 0.3rem solid #3787e5;
+}
+
+.callout-body-container ul,
+.callout-body-container ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.4rem;
+}
+
+.callout-body-container li {
+  margin-bottom: 0.4rem;
+}
+
+.anchorjs-link,
+.header-anchor,
+h1 a.anchorjs-link,
+h2 a.anchorjs-link,
+h3 a.anchorjs-link {
+  display: none !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
