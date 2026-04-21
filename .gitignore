@@ -6,3 +6,6 @@
 # R
 .Rhistory
 **/.Rhistory
+
+/.quarto/
+**/*.quarto_ipynb
