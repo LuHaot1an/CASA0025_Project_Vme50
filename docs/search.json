@@ -2,16 +2,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "London Growth Cost Explorer",
+    "title": "CASA00025 Group Project Title Here",
     "section": "",
-    "text": "This interactive application helps users identify where urban growth in London is generating the highest environmental cost, and understand what types of land are being lost in the process.\nIt combines spatial exploration with borough-level comparison, allowing users to move from observing where growth has occurred to understanding the environmental trade-offs associated with that growth.\nOpen the interactive application\nView the source code on GitHub\n\n\n\n\n\n\nTipStart exploring\n\n\n\nUse the interactive map to explore spatial patterns of urban growth and environmental cost.\nCompare boroughs with the highest environmental cost using the ranking chart.\nExamine the land-replacement chart to understand what types of environments are being lost."
+    "text": "Fill in the sections below to provide a brief summary of your project. Each section should have no more than 100 words. Do not edit any of the headings.\n\n\nWhat is the problem you’re trying to address using this application?\n\n\n\nWho are you building this application for? How does it address a need this community has?\n\n\n\nWhat data are you using?\n\n\n\nHow are you using this data to address the problem?\n\n\n\nHow does your application’s interface work to address the needs of your end user?\n\n\n\n\nReplace the link below with the link to your application.\n\n\n\n\n\n\n\nUse this section to explain how your application works using code blocks and text explanations (no more than 500 words excluding code):\nMap.setCenter(35.51898, 33.90153, 15);\n\nMap.setOptions(\"satellite\");\n\nvar aoi = ee.Geometry.Point(35.51898, 33.90153).buffer(3000);\nYou can include images:\n\n\n\nPixelwise T-Test, 2018\n\n\nand math: \\[ \\Large t = {\\frac{\\overline{x_1}-\\overline{x_2}} {\\sqrt{\\frac{s^2_1}{n_1} + \\frac{s^2_2}{n_2}}}} \\]"
   },
   {
     "objectID": "index.html#project-summary",
     "href": "index.html#project-summary",
-    "title": "London Growth Cost Explorer",
-    "section": "Project Summary",
-    "text": "Project Summary\n\nProblem Statement\nUrban growth is often mapped in terms of where development occurs, but this rarely explains what is lost and what environmental costs are produced. New built-up areas may replace green space, encroach on water-sensitive zones, and increase local heat exposure.\nThis application addresses that gap by identifying where urban expansion has taken place across London, what land has been replaced, and whether these changes are associated with uneven environmental costs across boroughs.\n\n\nEnd User\nThis application is designed for urban planners, local authorities, environmental teams, and community organisations. These users need accessible spatial evidence to understand whether recent urban growth has generated disproportionate environmental costs and where intervention may be needed.\nThe tool supports this by allowing users to identify high-cost growth areas, compare boroughs, and explore how development relates to green space loss, water-edge pressure, and heat exposure, without requiring specialist GIS expertise.\n\n\nData\nThe project uses multiple datasets available in Google Earth Engine. Dynamic World is used to detect land cover transitions and identify newly built-up areas. Sentinel-2 imagery is used to calculate NDVI as an indicator of vegetation change, while Landsat 8/9 is used to estimate land surface temperature and heat penalty.\nJRC Global Surface Water is used to identify stable water bodies and potential encroachment on sensitive water-edge environments. London borough boundaries are used to aggregate results and enable comparison across the city.\n\n\nMethodology\nThe analysis begins by identifying newly built-up areas through land cover change detection. For these expansion areas, a series of environmental indicators are calculated, including land replacement type, green space loss, NDVI reduction, heat penalty, and proximity to water edges.\nThese indicators are aggregated at borough level to enable comparison across London. A composite growth cost index is then constructed to summarise the environmental cost of urban expansion, highlighting spatial inequalities in development impact.\n\n\nInterface\nThe interface combines an interactive map, control panel, and summary outputs to support a simple analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.\nThey can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts provide comparative insights, allowing users to move from spatial exploration to analytical understanding."
+    "title": "CASA00025 Group Project Title Here",
+    "section": "",
+    "text": "Fill in the sections below to provide a brief summary of your project. Each section should have no more than 100 words. Do not edit any of the headings.\n\n\nWhat is the problem you’re trying to address using this application?\n\n\n\nWho are you building this application for? How does it address a need this community has?\n\n\n\nWhat data are you using?\n\n\n\nHow are you using this data to address the problem?\n\n\n\nHow does your application’s interface work to address the needs of your end user?"
   },
   {
     "objectID": "index.html#the-application",
@@ -23,9 +23,9 @@
   {
     "objectID": "index.html#how-it-works",
     "href": "index.html#how-it-works",
-    "title": "London Growth Cost Explorer",
+    "title": "CASA00025 Group Project Title Here",
     "section": "",
-    "text": "The project combines two presentation layers. First, the Earth Engine application allows users to explore environmental indicators spatially through an interactive map interface. Second, the borough ranking chart summarizes borough-level outcomes in a form that supports rapid comparison."
+    "text": "Use this section to explain how your application works using code blocks and text explanations (no more than 500 words excluding code):\nMap.setCenter(35.51898, 33.90153, 15);\n\nMap.setOptions(\"satellite\");\n\nvar aoi = ee.Geometry.Point(35.51898, 33.90153).buffer(3000);\nYou can include images:\n\n\n\nPixelwise T-Test, 2018\n\n\nand math: \\[ \\Large t = {\\frac{\\overline{x_1}-\\overline{x_2}} {\\sqrt{\\frac{s^2_1}{n_1} + \\frac{s^2_2}{n_2}}}} \\]"
   },
   {
     "objectID": "readme.html",
@@ -33,250 +33,5 @@
     "title": "",
     "section": "",
     "text": "Use this repository to host a website for your CASA0025 final project by following these stpes:\n\nclone this repository\ninstall quarto\nedit the ‘index.qmd’ file with the contents of your project\nusing terminal, navigate to the project directory and run “quarto render”\npush the changes to your github repository\non github, navigate to Settings&gt;Pages&gt;Build and Deployment. Make sure that under “Source” it says “deploy from branch”. Under “Branch”, select “Main” in the first dropdown and “Docs” under the second drop down. Then press “Save”\n\nYour website should now be available under https://{your_username}.github.io/{your_repo_name}"
-  },
-  {
-    "objectID": "data/Data_Dictionary.html",
-    "href": "data/Data_Dictionary.html",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "This document describes all clean, analysis-ready outputs generated in B_preprocess_data.js for downstream visualization, interaction, and modeling.\n\n\n\n\nAll exported files are stored under this asset root path:\n\nprojects/london-growth-cost-explorer/assets/\n\nIn Earth Engine, each file is loaded by combining the root path with the asset name.\n\n\nvar ASSET_ROOT = 'projects/london-growth-cost-explorer/assets/';\n\n\n\nvar stack = ee.Image(ASSET_ROOT + 'vme50_london_growth_stack_c_and_d_ready');\nvar growthCost = ee.Image(ASSET_ROOT + 'vme50_london_growth_growth_cost_index');\nvar transition = ee.Image(ASSET_ROOT + 'vme50_london_growth_dw_transition_code');\n\n\n\nvar boroughSummary = ee.FeatureCollection(ASSET_ROOT + 'vme50_london_growth_borough_summary');\nvar rfTrain = ee.FeatureCollection(ASSET_ROOT + 'vme50_london_growth_rf_train_samples');\nvar rfTest = ee.FeatureCollection(ASSET_ROOT + 'vme50_london_growth_rf_test_samples');\n\n\n\nMap.centerObject(boroughSummary, 9);\nMap.addLayer(growthCost, {min: 0, max: 1, palette: ['#ffffcc', '#fd8d3c', '#800026']}, 'growth_cost_index');\nMap.addLayer(transition, {min: 0, max: 88, palette: ['#f7fbff', '#6baed6', '#08306b']}, 'dw_transition_code', false);\n\nNote: Table ID / Image ID shown in the Asset panel is the full asset path used directly in code.\n\n\n\n\n\n\nThe preprocessing workflow exports six files in total, grouped into four product types:\n\nRaster stack for application layers and spatial analysis\nExport name: vme50_london_growth_stack_c_and_d_ready\nDerived single-band rasters for direct mapping and lightweight app loading\nExport names:\n\nvme50_london_growth_growth_cost_index\n\nvme50_london_growth_dw_transition_code\n\nBorough-level summary table (CSV)\nExport name: vme50_london_growth_borough_summary\nRandom-forest-ready sample tables (CSV)\nExport names:\n\nvme50_london_growth_rf_train_samples\n\nvme50_london_growth_rf_test_samples\n\n\n\nExport tasks are executed only when B_CONFIG.DoExport = true.\n\n\n\n\n\n\n\n\n\n\n\n\nExport file\nData type\nFormat\nMain purpose\n\n\n\n\nvme50_london_growth_stack_c_and_d_ready\nMulti-band raster\nGeoTIFF (image export)\nCore analysis stack for map layers and downstream statistics\n\n\nvme50_london_growth_growth_cost_index\nSingle-band raster\nGeoTIFF (image export)\nDirect visualization of integrated environmental cost hotspot intensity\n\n\nvme50_london_growth_dw_transition_code\nSingle-band raster\nGeoTIFF (image export)\nLand-cover transition diagnostics (what changed to built-up)\n\n\nvme50_london_growth_borough_summary\nVector table\nCSV\nBorough-level ranking, charting, and dashboard joins\n\n\nvme50_london_growth_rf_train_samples\nSample table\nCSV\nTraining dataset for Random Forest route\n\n\nvme50_london_growth_rf_test_samples\nSample table\nCSV\nIndependent testing dataset for Random Forest evaluation\n\n\n\n\n\n\n\n\nThe cAndDStack image is the main handoff product for mapping and analysis.\nIt includes the following bands:\n\n\n\n\n\n\n\n\n\n\nBand name\nMeaning\nUnit\nTypical value range\nPrimary use\n\n\n\n\nnew_built_2017_2025\nPixels that changed from non-built (2017) to built (2025)\nbinary\n0/1\nCore expansion mask; hotspot mapping\n\n\npersisted_built\nPixels built in both 2017 and 2025\nbinary\n0/1\nBaseline built-up context\n\n\nprevious_dw_class\nDynamic World class in 2017 for new-built pixels\nclass ID\n0-8 (masked outside new built)\nIdentify what land type was replaced\n\n\ndw_transition_code\nTransition code computed as 2017_class * 10 + 2025_class\ninteger code\ne.g. 16 = trees-&gt;built\nTransition diagnostics and legends\n\n\ngreen_loss_to_built\nNew-built pixels that replaced green/open classes (trees, grass, crops, shrub)\nbinary\n0/1\nGreen loss assessment\n\n\nnew_built_in_water_edge_zone\nNew-built pixels inside 100 m stable-water edge zone\nbinary\n0/1\nWater-edge pressure screening\n\n\nNDVI_2017\nSentinel-2 NDVI baseline (2017 growing season composite)\nNDVI index\napprox. -1 to 1\nBaseline vegetation condition\n\n\nNDVI_2025\nSentinel-2 NDVI endpoint (2025 growing season composite)\nNDVI index\napprox. -1 to 1\nCurrent vegetation condition\n\n\nNDVI_delta_2025_minus_2017\nNDVI change (2025 - 2017)\nNDVI delta\napprox. -1 to 1\nVegetation trend analysis\n\n\nLST_2017_K\nLandsat summer LST baseline (2017)\nKelvin\n~285-315 K (context-dependent)\nThermal baseline\n\n\nLST_2025_K\nLandsat summer LST endpoint (2025)\nKelvin\n~285-315 K (context-dependent)\nCurrent thermal condition\n\n\nLST_delta_K_2025_minus_2017\nLST change (2025 - 2017)\nKelvin\ntypically negative/positive small values\nHeat penalty diagnostics\n\n\ngrowth_cost_index\nComposite 0-1 expansion cost score on new-built pixels\nnormalized index\n0-1 (masked outside new built)\nPriority/ranking layer for policy focus\n\n\n\n\n\n\n\nThe workflow uses Google Dynamic World label IDs:\n\n\n\nClass ID\nClass name\n\n\n\n\n0\nwater\n\n\n1\ntrees\n\n\n2\ngrass\n\n\n3\nflooded_vegetation\n\n\n4\ncrops\n\n\n5\nshrub_and_scrub\n\n\n6\nbuilt\n\n\n7\nbare\n\n\n8\nsnow_and_ice\n\n\n\n\n\n\n\nEach record corresponds to one London borough feature.\n\n\n\n\n\n\n\n\n\nField name\nMeaning\nUnit\nPrimary use\n\n\n\n\nNAME / GSS_CODE\nBorough name and code (from source boundary asset)\ntext\nJoin key in dashboards/charts\n\n\nnew_built_area_km2\nArea converted to built between 2017-2025\nkm2\nExpansion intensity comparison\n\n\ngreen_loss_area_km2\nArea of green/open classes replaced by new built\nkm2\nEcological opportunity-cost comparison\n\n\nwater_edge_pressure_area_km2\nNew built inside stable-water edge sensitivity zone\nkm2\nWater-edge pressure comparison\n\n\nmean_ndvi_loss_on_new_built\nMean positive NDVI loss over new-built pixels\nNDVI units\nVegetation penalty indicator\n\n\nmean_lst_penalty_k_on_new_built\nMean positive LST increase over new-built pixels\nKelvin\nThermal penalty indicator\n\n\nmean_growth_cost_index\nMean composite cost score on new-built pixels\n0-1 index\nBorough ranking for intervention priority\n\n\n\n\n\n\n\nThe train/test CSV files are sampled from rfSamplingImage and are ready for model training.\n\n\n\n\n\n\n\n\n\n\nField name\nMeaning\nUnit / Type\n\n\n\n\nlabel_rf\nBinary class target (1 = new built, 0 = not new built)\ninteger\n\n\nsplit_random\nRandom number used for train/test split\nfloat [0,1)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nField name\nMeaning\nUnit\n\n\n\n\nB2\nSentinel-2 blue reflectance (2025 composite)\nunitless reflectance\n\n\nB3\nSentinel-2 green reflectance (2025 composite)\nunitless reflectance\n\n\nB4\nSentinel-2 red reflectance (2025 composite)\nunitless reflectance\n\n\nB8\nSentinel-2 NIR reflectance (2025 composite)\nunitless reflectance\n\n\nNDVI_2017\nBaseline NDVI\nNDVI index\n\n\nNDVI_2025\nEndpoint NDVI\nNDVI index\n\n\nNDVI_delta_2025_minus_2017\nNDVI change\nNDVI delta\n\n\nLST_C (from 2017 image)\nBaseline LST converted from Kelvin to Celsius\ndeg C\n\n\nLST_C_1 (from 2025 image)\nEndpoint LST converted from Kelvin to Celsius\ndeg C\n\n\nLST_delta_K_2025_minus_2017\nLST change\nKelvin\n\n\nwater_occurrence\nJRC long-term surface water occurrence\npercent (0-100)\n\n\nstable_water_buffer_100m_binary\nStable-water 100 m buffer flag\nbinary\n\n\ndw_label_2017\nDynamic World class label in 2017\nclass ID (0-8)\n\n\n\n\nNote: Earth Engine may append suffixes such as _1 when bands share names during concatenation (e.g., two LST_C bands from different years).\n\n\n\n\n\n\n\nVisualization / storytelling: use new_built_2017_2025, green_loss_to_built, new_built_in_water_edge_zone, and growth_cost_index as core thematic layers.\n\nInteraction / analytics: use boroughSummary for ranking panels and linked charts; use dw_transition_code for drill-down transition statistics.\n\nModeling track (Route A): use rf_train_samples and rf_test_samples directly for random forest baseline experiments and accuracy reporting.\n\n\n\n\n\nAll exported files use:\n\nPrefix: vme50_london_growth_\nFolder: GEE_Exports\nRegion: Greater London boundary\n\nThis consistent naming is designed for easy ingestion into app scripts, dashboards, and report pipelines."
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#data-dictionary",
-    "href": "data/Data_Dictionary.html#data-dictionary",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "This document describes all clean, analysis-ready outputs generated in B_preprocess_data.js for downstream visualization, interaction, and modeling."
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#quick-start-how-to-use-the-exported-assets",
-    "href": "data/Data_Dictionary.html#quick-start-how-to-use-the-exported-assets",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "All exported files are stored under this asset root path:\n\nprojects/london-growth-cost-explorer/assets/\n\nIn Earth Engine, each file is loaded by combining the root path with the asset name.\n\n\nvar ASSET_ROOT = 'projects/london-growth-cost-explorer/assets/';\n\n\n\nvar stack = ee.Image(ASSET_ROOT + 'vme50_london_growth_stack_c_and_d_ready');\nvar growthCost = ee.Image(ASSET_ROOT + 'vme50_london_growth_growth_cost_index');\nvar transition = ee.Image(ASSET_ROOT + 'vme50_london_growth_dw_transition_code');\n\n\n\nvar boroughSummary = ee.FeatureCollection(ASSET_ROOT + 'vme50_london_growth_borough_summary');\nvar rfTrain = ee.FeatureCollection(ASSET_ROOT + 'vme50_london_growth_rf_train_samples');\nvar rfTest = ee.FeatureCollection(ASSET_ROOT + 'vme50_london_growth_rf_test_samples');\n\n\n\nMap.centerObject(boroughSummary, 9);\nMap.addLayer(growthCost, {min: 0, max: 1, palette: ['#ffffcc', '#fd8d3c', '#800026']}, 'growth_cost_index');\nMap.addLayer(transition, {min: 0, max: 88, palette: ['#f7fbff', '#6baed6', '#08306b']}, 'dw_transition_code', false);\n\nNote: Table ID / Image ID shown in the Asset panel is the full asset path used directly in code."
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#output-packages",
-    "href": "data/Data_Dictionary.html#output-packages",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The preprocessing workflow exports six files in total, grouped into four product types:\n\nRaster stack for application layers and spatial analysis\nExport name: vme50_london_growth_stack_c_and_d_ready\nDerived single-band rasters for direct mapping and lightweight app loading\nExport names:\n\nvme50_london_growth_growth_cost_index\n\nvme50_london_growth_dw_transition_code\n\nBorough-level summary table (CSV)\nExport name: vme50_london_growth_borough_summary\nRandom-forest-ready sample tables (CSV)\nExport names:\n\nvme50_london_growth_rf_train_samples\n\nvme50_london_growth_rf_test_samples\n\n\n\nExport tasks are executed only when B_CONFIG.DoExport = true.\n\n\n\n\n\n\n\n\n\n\n\n\nExport file\nData type\nFormat\nMain purpose\n\n\n\n\nvme50_london_growth_stack_c_and_d_ready\nMulti-band raster\nGeoTIFF (image export)\nCore analysis stack for map layers and downstream statistics\n\n\nvme50_london_growth_growth_cost_index\nSingle-band raster\nGeoTIFF (image export)\nDirect visualization of integrated environmental cost hotspot intensity\n\n\nvme50_london_growth_dw_transition_code\nSingle-band raster\nGeoTIFF (image export)\nLand-cover transition diagnostics (what changed to built-up)\n\n\nvme50_london_growth_borough_summary\nVector table\nCSV\nBorough-level ranking, charting, and dashboard joins\n\n\nvme50_london_growth_rf_train_samples\nSample table\nCSV\nTraining dataset for Random Forest route\n\n\nvme50_london_growth_rf_test_samples\nSample table\nCSV\nIndependent testing dataset for Random Forest evaluation"
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#raster-stack-dictionary-canddstack",
-    "href": "data/Data_Dictionary.html#raster-stack-dictionary-canddstack",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The cAndDStack image is the main handoff product for mapping and analysis.\nIt includes the following bands:\n\n\n\n\n\n\n\n\n\n\nBand name\nMeaning\nUnit\nTypical value range\nPrimary use\n\n\n\n\nnew_built_2017_2025\nPixels that changed from non-built (2017) to built (2025)\nbinary\n0/1\nCore expansion mask; hotspot mapping\n\n\npersisted_built\nPixels built in both 2017 and 2025\nbinary\n0/1\nBaseline built-up context\n\n\nprevious_dw_class\nDynamic World class in 2017 for new-built pixels\nclass ID\n0-8 (masked outside new built)\nIdentify what land type was replaced\n\n\ndw_transition_code\nTransition code computed as 2017_class * 10 + 2025_class\ninteger code\ne.g. 16 = trees-&gt;built\nTransition diagnostics and legends\n\n\ngreen_loss_to_built\nNew-built pixels that replaced green/open classes (trees, grass, crops, shrub)\nbinary\n0/1\nGreen loss assessment\n\n\nnew_built_in_water_edge_zone\nNew-built pixels inside 100 m stable-water edge zone\nbinary\n0/1\nWater-edge pressure screening\n\n\nNDVI_2017\nSentinel-2 NDVI baseline (2017 growing season composite)\nNDVI index\napprox. -1 to 1\nBaseline vegetation condition\n\n\nNDVI_2025\nSentinel-2 NDVI endpoint (2025 growing season composite)\nNDVI index\napprox. -1 to 1\nCurrent vegetation condition\n\n\nNDVI_delta_2025_minus_2017\nNDVI change (2025 - 2017)\nNDVI delta\napprox. -1 to 1\nVegetation trend analysis\n\n\nLST_2017_K\nLandsat summer LST baseline (2017)\nKelvin\n~285-315 K (context-dependent)\nThermal baseline\n\n\nLST_2025_K\nLandsat summer LST endpoint (2025)\nKelvin\n~285-315 K (context-dependent)\nCurrent thermal condition\n\n\nLST_delta_K_2025_minus_2017\nLST change (2025 - 2017)\nKelvin\ntypically negative/positive small values\nHeat penalty diagnostics\n\n\ngrowth_cost_index\nComposite 0-1 expansion cost score on new-built pixels\nnormalized index\n0-1 (masked outside new built)\nPriority/ranking layer for policy focus"
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#dynamic-world-class-reference",
-    "href": "data/Data_Dictionary.html#dynamic-world-class-reference",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The workflow uses Google Dynamic World label IDs:\n\n\n\nClass ID\nClass name\n\n\n\n\n0\nwater\n\n\n1\ntrees\n\n\n2\ngrass\n\n\n3\nflooded_vegetation\n\n\n4\ncrops\n\n\n5\nshrub_and_scrub\n\n\n6\nbuilt\n\n\n7\nbare\n\n\n8\nsnow_and_ice"
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#borough-summary-table-dictionary-boroughsummary",
-    "href": "data/Data_Dictionary.html#borough-summary-table-dictionary-boroughsummary",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "Each record corresponds to one London borough feature.\n\n\n\n\n\n\n\n\n\nField name\nMeaning\nUnit\nPrimary use\n\n\n\n\nNAME / GSS_CODE\nBorough name and code (from source boundary asset)\ntext\nJoin key in dashboards/charts\n\n\nnew_built_area_km2\nArea converted to built between 2017-2025\nkm2\nExpansion intensity comparison\n\n\ngreen_loss_area_km2\nArea of green/open classes replaced by new built\nkm2\nEcological opportunity-cost comparison\n\n\nwater_edge_pressure_area_km2\nNew built inside stable-water edge sensitivity zone\nkm2\nWater-edge pressure comparison\n\n\nmean_ndvi_loss_on_new_built\nMean positive NDVI loss over new-built pixels\nNDVI units\nVegetation penalty indicator\n\n\nmean_lst_penalty_k_on_new_built\nMean positive LST increase over new-built pixels\nKelvin\nThermal penalty indicator\n\n\nmean_growth_cost_index\nMean composite cost score on new-built pixels\n0-1 index\nBorough ranking for intervention priority"
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#random-forest-sample-tables-dictionary",
-    "href": "data/Data_Dictionary.html#random-forest-sample-tables-dictionary",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The train/test CSV files are sampled from rfSamplingImage and are ready for model training.\n\n\n\n\n\n\n\n\n\n\nField name\nMeaning\nUnit / Type\n\n\n\n\nlabel_rf\nBinary class target (1 = new built, 0 = not new built)\ninteger\n\n\nsplit_random\nRandom number used for train/test split\nfloat [0,1)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nField name\nMeaning\nUnit\n\n\n\n\nB2\nSentinel-2 blue reflectance (2025 composite)\nunitless reflectance\n\n\nB3\nSentinel-2 green reflectance (2025 composite)\nunitless reflectance\n\n\nB4\nSentinel-2 red reflectance (2025 composite)\nunitless reflectance\n\n\nB8\nSentinel-2 NIR reflectance (2025 composite)\nunitless reflectance\n\n\nNDVI_2017\nBaseline NDVI\nNDVI index\n\n\nNDVI_2025\nEndpoint NDVI\nNDVI index\n\n\nNDVI_delta_2025_minus_2017\nNDVI change\nNDVI delta\n\n\nLST_C (from 2017 image)\nBaseline LST converted from Kelvin to Celsius\ndeg C\n\n\nLST_C_1 (from 2025 image)\nEndpoint LST converted from Kelvin to Celsius\ndeg C\n\n\nLST_delta_K_2025_minus_2017\nLST change\nKelvin\n\n\nwater_occurrence\nJRC long-term surface water occurrence\npercent (0-100)\n\n\nstable_water_buffer_100m_binary\nStable-water 100 m buffer flag\nbinary\n\n\ndw_label_2017\nDynamic World class label in 2017\nclass ID (0-8)\n\n\n\n\nNote: Earth Engine may append suffixes such as _1 when bands share names during concatenation (e.g., two LST_C bands from different years)."
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#recommended-usage",
-    "href": "data/Data_Dictionary.html#recommended-usage",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "Visualization / storytelling: use new_built_2017_2025, green_loss_to_built, new_built_in_water_edge_zone, and growth_cost_index as core thematic layers.\n\nInteraction / analytics: use boroughSummary for ranking panels and linked charts; use dw_transition_code for drill-down transition statistics.\n\nModeling track (Route A): use rf_train_samples and rf_test_samples directly for random forest baseline experiments and accuracy reporting."
-  },
-  {
-    "objectID": "data/Data_Dictionary.html#export-naming-convention",
-    "href": "data/Data_Dictionary.html#export-naming-convention",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "All exported files use:\n\nPrefix: vme50_london_growth_\nFolder: GEE_Exports\nRegion: Greater London boundary\n\nThis consistent naming is designed for easy ingestion into app scripts, dashboards, and report pipelines."
-  },
-  {
-    "objectID": "index.html#borough-ranking-analysis",
-    "href": "index.html#borough-ranking-analysis",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The chart below shows the 10 boroughs with the highest mean environmental growth cost index.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv(\"data/vme50_london_growth_D_borough_ranking_clean.csv\")\n\ntop10 = (\n    df.sort_values(\"d_mean_growth_cost_index\", ascending=False)\n      .head(10)\n      .sort_values(\"d_mean_growth_cost_index\", ascending=True)\n)\n\nplt.figure(figsize=(10, 6))\nplt.barh(top10[\"NAME\"], top10[\"d_mean_growth_cost_index\"])\nplt.xlabel(\"Mean Growth Cost Index\")\nplt.ylabel(\"Borough\")\nplt.title(\"Top 10 Boroughs by Environmental Growth Cost\")\nplt.tight_layout()\nplt.show()"
-  },
-  {
-    "objectID": "index.html#key-interpretation",
-    "href": "index.html#key-interpretation",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The ranking chart highlights substantial variation in environmental growth cost across London boroughs. Boroughs with higher scores are not necessarily those with the largest amount of new development, but rather those where new built-up land appears to have replaced ecologically valuable land or produced stronger local environmental penalties."
-  },
-  {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "London’s recent urban growth does not only change where built-up land appears. It may also replace green space, intensify surface heat, reduce vegetation health, and increase pressure near sensitive water-edge environments. This project brings these environmental signals together in a single interactive application to help users identify where development may have generated the highest local environmental cost."
-  },
-  {
-    "objectID": "index.html#why-it-matters",
-    "href": "index.html#why-it-matters",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "Many urban growth maps show where development happened, but not what was lost or what environmental penalties followed. This application moves beyond simple expansion mapping by highlighting ecological trade-offs and comparing how these costs vary across London boroughs."
-  },
-  {
-    "objectID": "index.html#interactive-map",
-    "href": "index.html#interactive-map",
-    "title": "London Growth Cost Explorer",
-    "section": "Interactive Map",
-    "text": "Interactive Map\nExplore spatial patterns of urban growth and environmental cost across London.\nUse the layer controls to switch between indicators such as newly built-up land, vegetation loss, heat exposure, and composite growth cost. Click a borough to inspect its local patterns.\nNote: the map is hosted via Google Earth Engine and may occasionally take a few seconds to load depending on network or browser settings.\nIf the map does not load, click here to open the interactive map."
-  },
-  {
-    "objectID": "index.html#end-users",
-    "href": "index.html#end-users",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "This application is designed for planners, local authorities, environmental teams, and community groups. It provides accessible spatial evidence for identifying where recent development may have produced higher environmental costs, without requiring specialist GIS knowledge."
-  },
-  {
-    "objectID": "index.html#data",
-    "href": "index.html#data",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The project uses borough-level outputs derived from Google Earth Engine, including growth cost index, green loss, NDVI loss, heat penalty, and water-edge encroachment. These indicators are based on land-cover transition analysis and environmental change metrics aggregated to borough level."
-  },
-  {
-    "objectID": "index.html#methodology",
-    "href": "index.html#methodology",
-    "title": "London Growth Cost Explorer",
-    "section": "Methodology",
-    "text": "Methodology\nData preprocessing and land-cover preparation established the base inputs for identifying newly built-up land and land-cover transitions across London.\nIndicator construction produced the environmental cost measures used in the application, including vegetation loss, NDVI decline, heat penalty, water-edge encroachment, and a composite growth cost index.\nApplication development implemented the interactive Earth Engine interface, while visualisation and front-end integration translated the outputs into charts, explanatory text, and a project showcase page."
-  },
-  {
-    "objectID": "index.html#interface-design",
-    "href": "index.html#interface-design",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "The interface combines two complementary presentation layers: an interactive Earth Engine map for spatial exploration and a borough ranking chart for summary comparison. This structure helps users move between local detail and city-wide overview."
-  },
-  {
-    "objectID": "index.html#team-contribution",
-    "href": "index.html#team-contribution",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "This page presents the front-end showcase for the wider group project. The interactive Earth Engine application, indicator layers, and borough-level outputs were developed collaboratively across the team and integrated here as a public-facing project page."
-  },
-  {
-    "objectID": "index.html#where-has-london-grown-and-what-environmental-cost-came-with-that-growth",
-    "href": "index.html#where-has-london-grown-and-what-environmental-cost-came-with-that-growth",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "This interactive application helps users identify where urban growth in London is generating the highest environmental cost, and understand what types of land are being lost in the process.\nIt combines spatial exploration with borough-level comparison, allowing users to move from observing where growth has occurred to understanding the environmental trade-offs associated with that growth.\nOpen the interactive application\nView the source code on GitHub\n\n\n\n\n\n\nTipStart exploring\n\n\n\nUse the interactive map to explore spatial patterns of urban growth and environmental cost.\nCompare boroughs with the highest environmental cost using the ranking chart.\nExamine the land-replacement chart to understand what types of environments are being lost."
-  },
-  {
-    "objectID": "index.html#what-this-project-reveals",
-    "href": "index.html#what-this-project-reveals",
-    "title": "London Growth Cost Explorer",
-    "section": "What This Project Reveals",
-    "text": "What This Project Reveals\nMany urban growth maps show where development happened, but not what was lost or what environmental penalties followed. This project goes further by combining multiple environmental indicators into a single spatial story, helping users distinguish between growth that is merely extensive and growth that is environmentally costly."
-  },
-  {
-    "objectID": "index.html#explore-the-map",
-    "href": "index.html#explore-the-map",
-    "title": "London Growth Cost Explorer",
-    "section": "Explore the Map",
-    "text": "Explore the Map\nUse the interactive application below to inspect newly built-up land, switch between environmental indicators, and compare borough-level patterns across London."
-  },
-  {
-    "objectID": "index.html#which-boroughs-show-the-highest-cost",
-    "href": "index.html#which-boroughs-show-the-highest-cost",
-    "title": "London Growth Cost Explorer",
-    "section": "Which Boroughs Show the Highest Cost?",
-    "text": "Which Boroughs Show the Highest Cost?\nHover over each bar to inspect exact borough-level values.\nThese rankings allow comparison of relative environmental cost across boroughs, rather than absolute levels of development.\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\nNoteKey Insight\n\n\n\nOuter London boroughs such as Richmond upon Thames and Hounslow show the highest environmental growth cost.\nThis suggests that recent development in these areas is more likely to replace high-value green or natural land, rather than previously developed surfaces.\nIn contrast, inner boroughs tend to show lower cost, indicating that growth may be occurring on already urbanised land."
-  },
-  {
-    "objectID": "index.html#what-the-ranking-suggests",
-    "href": "index.html#what-the-ranking-suggests",
-    "title": "London Growth Cost Explorer",
-    "section": "What the Ranking Suggests",
-    "text": "What the Ranking Suggests\nThe ranking reveals substantial variation in environmental growth cost across London boroughs. Higher-cost boroughs are not simply those with more development. Instead, they are places where newly built-up land appears more strongly associated with ecological loss, vegetation decline, heat exposure, or water-edge pressure."
-  },
-  {
-    "objectID": "index.html#how-to-read-the-application",
-    "href": "index.html#how-to-read-the-application",
-    "title": "London Growth Cost Explorer",
-    "section": "How to Read the Application",
-    "text": "How to Read the Application\nStart with the map to investigate where growth took place and how different indicators vary across space. Then use the borough ranking to compare which boroughs show the highest overall environmental cost. Together, these two views connect local patterns with city-wide comparison."
-  },
-  {
-    "objectID": "index.html#behind-the-application",
-    "href": "index.html#behind-the-application",
-    "title": "London Growth Cost Explorer",
-    "section": "Behind the Application",
-    "text": "Behind the Application\nThis application is designed for planners, local authorities, environmental teams, and community groups who need accessible spatial evidence on where recent urban growth may be associated with higher environmental cost.\nIt uses Google Earth Engine data including land-cover transitions, NDVI, land surface temperature, and water-related indicators to support borough-level comparison and help users identify where further investigation or intervention may be needed."
-  },
-  {
-    "objectID": "index.html#london-growth-cost-explorer",
-    "href": "index.html#london-growth-cost-explorer",
-    "title": "London Growth Cost Explorer",
-    "section": "",
-    "text": "Urban growth is not only about expansion, but also about what is lost. This application reveals where recent development in London may have generated the greatest environmental cost.\nExplore the interactive map"
-  },
-  {
-    "objectID": "index.html#what-did-new-development-replace",
-    "href": "index.html#what-did-new-development-replace",
-    "title": "London Growth Cost Explorer",
-    "section": "What Did New Development Replace?",
-    "text": "What Did New Development Replace?\nThis chart reveals which types of land are most frequently replaced by new built-up areas, highlighting the environmental trade-offs associated with urban expansion.\nHover over each segment to compare which land types were most frequently replaced in the boroughs with the largest total transition into built-up land.\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\nNoteKey Insight\n\n\n\nVegetation and water-related land types appear to be the most frequently replaced in high-growth boroughs.\nThis indicates that new development is often expanding into ecologically sensitive areas, such as green spaces and river-adjacent zones, rather than reusing previously built land."
-  },
-  {
-    "objectID": "index.html#what-the-results-suggest",
-    "href": "index.html#what-the-results-suggest",
-    "title": "London Growth Cost Explorer",
-    "section": "What the Results Suggest",
-    "text": "What the Results Suggest\nEnvironmental cost is not evenly distributed across London.\nHigher-cost boroughs are not simply those with more development, but those where growth is more strongly associated with vegetation loss, heat exposure, and ecological disruption.\nThe combined use of spatial layers and borough-level charts shows that urban expansion can produce very different environmental outcomes depending on where it occurs and what land it replaces."
-  },
-  {
-    "objectID": "index.html#how-to-use-this-application",
-    "href": "index.html#how-to-use-this-application",
-    "title": "London Growth Cost Explorer",
-    "section": "How to Use This Application",
-    "text": "How to Use This Application\nStart with the interactive map to explore where urban growth has taken place and how environmental cost varies across London.\nThen use the borough ranking chart to identify which areas show the highest relative environmental cost. Finally, examine the land-replacement chart to understand what kinds of land are most frequently being converted into built-up surfaces.\nTogether, these components help users move from spatial observation to comparative interpretation."
-  },
-  {
-    "objectID": "index.html#how-the-cost-index-is-calculated",
-    "href": "index.html#how-the-cost-index-is-calculated",
-    "title": "London Growth Cost Explorer",
-    "section": "How the Cost Index is Calculated",
-    "text": "How the Cost Index is Calculated\nThe environmental growth cost index combines multiple indicators derived from Google Earth Engine:\n\nvegetation loss and NDVI decline\nheat exposure associated with new built-up land\npressure on water-adjacent land\nland-cover transitions into built surfaces\n\nEach indicator is normalised and aggregated to produce a composite score at borough level. This allows comparison across boroughs while capturing multiple dimensions of environmental impact.\nThis index is intended as a comparative diagnostic measure rather than a precise absolute measure of environmental damage.\nThe chart below complements the spatial patterns observed in the map by identifying which boroughs exhibit the highest overall environmental cost of urban growth."
-  },
-  {
-    "objectID": "index.html#limitations",
-    "href": "index.html#limitations",
-    "title": "London Growth Cost Explorer",
-    "section": "Limitations",
-    "text": "Limitations\nThis analysis relies on satellite-derived indicators which may not capture all fine-scale urban changes.\nUncertainty may arise from land-cover classification, temporal resolution, and the aggregation of multiple indicators into a single comparative index.\nThe growth cost index should therefore be interpreted as a diagnostic and comparative measure rather than an absolute representation of environmental impact."
-  },
-  {
-    "objectID": "index.html#why-this-matters",
-    "href": "index.html#why-this-matters",
-    "title": "London Growth Cost Explorer",
-    "section": "Why This Matters",
-    "text": "Why This Matters\nBy highlighting where urban growth is associated with ecological trade-offs, this application supports more informed planning decisions that prioritise not only development quantity but also environmental quality.\nIt helps shift attention from simply measuring how much development has occurred to understanding how and where that development may generate greater environmental cost."
-  },
-  {
-    "objectID": "index.html#team-contributions",
-    "href": "index.html#team-contributions",
-    "title": "London Growth Cost Explorer",
-    "section": "Team Contributions",
-    "text": "Team Contributions\n\nA: data preprocessing and land-cover preparation\nB: imagery processing and vegetation indicators\nC: land transition analysis and supporting datasets\nD: growth cost index construction and borough aggregation\nE: Earth Engine application interface and interaction design\nF: chart design, front-end integration, Quarto showcase page, and interface text"
   }
 ]
