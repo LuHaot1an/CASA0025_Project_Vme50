@@ -470,20 +470,21 @@ Together, these findings demonstrate that the environmental impact of urban grow
 
 ### Why This Matters
 
-Urban growth is often evaluated by how much land is developed, but this alone does not capture its environmental consequences.
+Urban growth is often assessed by how much land is developed, but this alone does not capture its environmental consequences.
 
-By linking expansion to green loss, heat increase, and pressure on sensitive areas, this application highlights where development may carry higher ecological costs.
+By linking new development to green loss, heat increase, and pressure on sensitive areas, this application reveals where urban expansion is likely to impose higher ecological costs.
 
-These patterns are not evenly distributed across London, suggesting that some boroughs experience more intensive environmental trade-offs than others.
+These costs are unevenly distributed across London, indicating that some boroughs experience more intensive environmental trade-offs than others.
 
-This highlights the need for planning strategies that consider not only the scale of urban growth, but also its environmental consequences and spatial context.
+This provides evidence to support more targeted planning decisions, helping identify where mitigation, protection, or further investigation may be most needed.
 
 ## Behind the Application
 
-This application is designed for planners, local authorities, environmental teams, and community groups who need accessible spatial evidence on where recent urban growth may be associated with higher environmental cost.
+This application is designed for planners, local authorities, and environmental teams who need accessible and interpretable spatial evidence on where recent urban growth may be associated with higher environmental cost.
 
-It uses Google Earth Engine data including land-cover transitions, NDVI, land surface temperature, and water-related indicators to support borough-level comparison and help users identify where further investigation or intervention may be needed.
+It integrates Google Earth Engine datasets, including land-cover transitions, NDVI, land surface temperature, and water-related indicators, to enable borough-level comparison.
 
+The design prioritises simplicity and interpretability, allowing users to quickly identify high-cost growth areas and explore underlying environmental patterns without requiring specialist GIS expertise.
 ## Team Contributions
 
 ### Preprocessing
@@ -506,7 +507,7 @@ It uses Google Earth Engine data including land-cover transitions, NDVI, land su
 
 * **E**: GEE interface design and interaction development, including map layer control, borough selection, and interactive querying to support exploratory analysis
 
-* **F**: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation
+* **F**: Chart development and front-end integration, including linking borough-level data to interactive charts, embedding visual outputs into the Quarto interface, and ensuring coordinated interaction between charts and the Earth Engine application
 
 ## Limitations
 
@@ -516,7 +517,7 @@ The growth cost index is based on equal weighting of indicators, which provides 
 
 In addition, borough-level aggregation may mask local variation within boroughs, meaning that intra-borough differences are not explicitly represented. Future work could explore sensitivity to indicator choice and weighting to better understand how different dimensions contribute to overall environmental cost.
 
-The index should therefore be interpreted as a comparative diagnostic tool rather than a precise measurement of environmental impact.
+The index should therefore be interpreted as a comparative diagnostic tool rather than an absolute measure of environmental impact.
 
 
 
