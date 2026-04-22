@@ -10,3 +10,8 @@ docs/index_files/
 docs/site_libs/
 index.quarto_ipynb*
 
+
+.DS_Store
+
+/.quarto/
+**/*.quarto_ipynb

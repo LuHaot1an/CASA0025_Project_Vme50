@@ -20,18 +20,19 @@ from IPython.display import HTML, display
 pio.renderers.default = "notebook_connected"
 ```
 
-
-
 ## Where has London grown, and what environmental cost came with that growth?
 
-This interactive application helps users identify where urban growth in London is generating the highest environmental cost, and understand what types of land are being lost in the process.
+This interactive application examines not only where urban growth has occurred in London, but also what environmental cost has accompanied that growth.
 
-It combines spatial exploration with borough-level comparison, allowing users to move from observing where growth has occurred to understanding the environmental trade-offs associated with that growth.
+Urban expansion is often mapped in terms of new built-up land, but this alone does not reveal what has been lost or whether some areas experience disproportionately higher environmental impact. This project addresses that gap by focusing on the uneven environmental consequences of urban growth.
+
+It therefore asks a key analytical and decision-oriented question: why does urban growth generate uneven environmental cost across London, and where might intervention be most needed?
+
+To address this, the application combines spatial analysis with borough-level indicators to examine not only where high-cost growth occurs, but also how underlying land transformation processes contribute to these patterns.
 
 [Open the interactive application](https://extreme-flame-493900-h7.projects.earthengine.app/view/london-growth-cost-explorer)
 
 [View the source code on GitHub](https://github.com/LuHaot1an/CASA0025_Project_Vme50)
-
 
 ::: {.callout-tip appearance="simple"}
 
@@ -43,46 +44,73 @@ Compare boroughs with the highest environmental cost using the ranking chart.
 
 Examine the land-replacement chart to understand what types of environments are being lost.
 
-:::
-
 ## Project Summary
 
 ### Problem Statement
 
-Urban growth is often mapped in terms of where development occurs, but this rarely explains what is lost and what environmental costs are produced. New built-up areas may replace green space, encroach on water-sensitive zones, and increase local heat exposure.
+Urban expansion maps typically show where development has occurred, but fail to explain what has been lost and where intervention is most needed.
 
-This application addresses that gap by identifying where urban expansion has taken place across London, what land has been replaced, and whether these changes are associated with uneven environmental costs across boroughs.
+This application addresses a decision-oriented question: **where should planners prioritise intervention to mitigate the environmental cost of recent urban growth in London?**
+
+By linking land conversion processes with environmental indicators including green loss, heat penalty, NDVI reduction, and water-edge pressure, the application enables users to diagnose not only where growth has occurred, but why certain areas exhibit higher environmental cost.
 
 ### End User
 
-This application is designed for urban planners, local authorities, environmental teams, and community organisations. These users need accessible spatial evidence to understand whether recent urban growth has generated disproportionate environmental costs and where intervention may be needed.
+The primary users are borough-level planning officers and environmental analysts responsible for evaluating development pressure and prioritising mitigation strategies.
 
-The tool supports this by allowing users to identify high-cost growth areas, compare boroughs, and explore how development relates to green space loss, water-edge pressure, and heat exposure, without requiring specialist GIS expertise.
+The application also supports policy teams and community stakeholders by providing accessible spatial evidence on where urban growth has produced disproportionate environmental costs.
 
 ### Data
 
-The project uses multiple datasets available in Google Earth Engine. Dynamic World is used to detect land cover transitions and identify newly built-up areas. Sentinel-2 imagery is used to calculate NDVI as an indicator of vegetation change, while Landsat 8/9 is used to estimate land surface temperature and heat penalty.
+These datasets are selected to represent different dimensions of environmental cost associated with urban growth.
 
-JRC Global Surface Water is used to identify stable water bodies and potential encroachment on sensitive water-edge environments. London borough boundaries are used to aggregate results and enable comparison across the city.
+Dynamic World is used to identify land cover transitions and newly built-up areas, providing the basis for understanding what types of land are being converted.
+
+Sentinel-2 imagery represents vegetation condition through NDVI, capturing changes in green cover. Landsat 8/9 provides information on surface thermal conditions, reflecting heat-related impacts of urban expansion.
+
+JRC Global Surface Water represents stable water bodies and water-adjacent environments, allowing identification of areas potentially affected by development pressure.
+
+London borough boundaries are used to aggregate results and enable comparison across the city, supporting planning-relevant interpretation.
 
 ### Methodology
 
-The analysis begins by identifying newly built-up areas through land cover change detection. For these expansion areas, a series of environmental indicators are calculated, including land replacement type, green space loss, NDVI reduction, heat penalty, and proximity to water edges.
+Urban growth was identified by detecting transitions to built-up land using Dynamic World classifications. Only newly developed areas were retained for analysis.
 
-These indicators are aggregated at borough level to enable comparison across London. A composite growth cost index is then constructed to summarise the environmental cost of urban expansion, highlighting spatial inequalities in development impact.
+Environmental impacts were then calculated for these new built-up pixels. Green loss was derived from vegetation-to-built transitions, NDVI loss from changes in vegetation index, heat penalty from land surface temperature differences, and water-edge pressure from proximity to stable surface water.
+
+All indicators were standardised and combined into a composite Growth Cost Index to enable comparison across boroughs.
+
+Finally, results were aggregated to borough level to support spatial comparison and interactive exploration.
 
 ### Interface
 
-The interface combines an interactive map, control panel, and summary outputs to support a simple analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.
+The interface combines an interactive map, control panel, and summary outputs to support a clear analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.
 
 They can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts on the project webpage provide borough-level comparison, allowing users to move from spatial exploration in the map to broader analytical interpretation.
+
+### How to Use the Application
+
+A suggested workflow is:
+
+1. **Identify hotspots**
+   Use the map to locate areas of high growth cost.
+
+2. **Diagnose causes**
+   Examine land replacement patterns to understand what types of land have been converted.
+
+3. **Compare boroughs**
+   Use the ranking chart to assess relative environmental cost across London.
+
+4. **Evaluate local context**
+   Compare borough-level indicators with the London average to identify disproportionate impacts.
+
 ## Interactive Map
 
 Explore spatial patterns of urban growth and environmental cost across London.
 
 Use the layer controls to switch between indicators such as newly built-up land, vegetation loss, heat exposure, and composite growth cost. Click a borough to inspect its local patterns.
 
-Note: the map is hosted via Google Earth Engine and may occasionally take a few seconds to load depending on network or browser settings.
+Note: The map is hosted via Google Earth Engine and may take a few seconds to load depending on network conditions.
 
 If the map does not load, [click here to open the interactive map](https://extreme-flame-493900-h7.projects.earthengine.app/view/london-growth-cost-explorer).
 
@@ -97,9 +125,9 @@ If the map does not load, [click here to open the interactive map](https://extre
 
 Start with the interactive map to explore where urban growth has taken place and how environmental cost varies across London.
 
-Then use the borough ranking chart to identify which areas show the highest relative environmental cost. Finally, examine the land-replacement chart to understand what kinds of land are most frequently being converted into built-up surfaces.
+Then use the borough ranking chart to identify which areas show the highest relative environmental cost. The land-replacement chart helps explain what types of land are being converted into built-up surfaces, while the borough-versus-London chart shows whether selected boroughs sit above or below the city-wide average across key indicators.
 
-Together, these components help users move from spatial observation to comparative interpretation.
+Together, these components help users move from spatial observation to borough-level comparison and comparative interpretation.
 
 ## How the Cost Index is Calculated
 
@@ -114,13 +142,41 @@ Each indicator is normalised and aggregated to produce a composite score at boro
 
 This index is intended as a comparative diagnostic measure rather than a precise absolute measure of environmental damage.
 
-The chart below complements the spatial patterns observed in the map by identifying which boroughs exhibit the highest overall environmental cost of urban growth.
+The charts below reflect the same borough-level outputs used in the interactive application and help summarise the main patterns visible in the map.
+
+## How it Works
+
+The application is built in Google Earth Engine (GEE) and combines pre-processed environmental indicators with an interactive user interface.
+
+Urban growth is first identified through land cover change detection, and newly built-up areas are used to derive a set of environmental indicators, including vegetation loss, NDVI decline, heat penalty, and water-edge pressure. These indicators are then normalised and aggregated at borough level to produce a composite growth cost index. The equal-weighted index is intended to support relative comparison across boroughs rather than provide an absolute measure of environmental damage.
+
+The processed outputs are stored as GEE assets and loaded into the application as image layers and borough-level summary tables. The interface allows users to switch between indicators, select boroughs, and inspect summary statistics and charts.
+
+```js
+var growthCostImg = ee.Image(ASSETS.growthCost);
+mainMap.addLayer(growthCostImg, {min: 0, max: 1}, 'Growth Cost Index');
+````
+
+User interaction is handled through the GEE UI framework. Boroughs can be selected either from a dropdown menu or by clicking directly on the map. Once a borough is selected, the application retrieves precomputed values from a cached borough dataset and updates the summary card, ranking context, and borough-level charts without repeating heavy server-side computation.
+
+```js
+function activateBorough(gssCode, zoomToIt) {
+  var row = CACHE.boroughsByCode[gssCode];
+  renderBoroughSummaryCard(row);
+  renderBoroughCharts(row);
+  renderMap();
+}
+```
+
+The chart module then provides three linked outputs: a London-wide ranking chart, a standardised borough indicator chart, and a borough-versus-London comparison chart. Together, these components enable users to move from spatial exploration to borough-level interpretation of environmental cost.
+
+
 
 ## Which Boroughs Show the Highest Cost?
 
 Hover over each bar to inspect exact borough-level values.
 
-These rankings allow comparison of relative environmental cost across boroughs, rather than absolute levels of development.
+Higher values indicate disproportionately higher environmental cost associated with urban growth, helping identify priority areas for potential intervention. These rankings support comparison of relative environmental cost across boroughs rather than absolute levels of development.
 
 ```{python}
 #| echo: false
@@ -148,7 +204,7 @@ fig1 = px.bar(
         "d_mean_growth_cost_index": "Mean Growth Cost Index",
         "NAME": ""
     },
-    title="Top 10 Boroughs by Environmental Growth Cost Index"
+    title="Top 10 Boroughs by Growth Cost Index (higher = greater environmental cost)"
 )
 
 fig1.update_layout(
@@ -173,21 +229,29 @@ fig1.show(config={
 })
 ```
 
+### Growth Cost Index across London
+
+This map shows the spatial distribution of the Growth Cost Index across London boroughs.
+
+Higher values indicate areas where recent urban expansion is associated with greater environmental cost.
+
+The pattern suggests that environmental impacts are unevenly distributed across the city.
 ::: {.callout-note appearance="simple"}
 
-## Key Insight
+**Key Insight**
 
-Outer London boroughs such as Richmond upon Thames and Hounslow show the highest environmental growth cost.
+Environmental costs of urban growth are not evenly distributed across London.
 
-This suggests that recent development in these areas is more likely to replace high-value green or natural land, rather than previously developed surfaces.
+Some boroughs experience significantly higher trade-offs between development and ecological impact, suggesting that a one-size-fits-all planning approach may be insufficient.
 
-In contrast, inner boroughs tend to show lower cost, indicating that growth may be occurring on already urbanised land.
-
+Targeted interventions may be required in high-cost areas to better balance growth and environmental sustainability.
 :::
 
 ## What Did New Development Replace?
 
-This chart reveals which types of land are most frequently replaced by new built-up areas, highlighting the environmental trade-offs associated with urban expansion.
+This chart shows which types of land are most frequently replaced by new built-up areas, highlighting the environmental trade-offs associated with urban expansion.
+
+It complements the ranking chart by showing what kinds of environments are being lost in boroughs with the largest transition into built-up land. This helps explain how different types of land conversion directly contribute to uneven environmental cost patterns.
 
 Hover over each segment to compare which land types were most frequently replaced in the boroughs with the largest total transition into built-up land.
 
@@ -279,29 +343,141 @@ fig2.show(config={
 })
 ```
 
-::: {.callout-note appearance="simple"}
+### Indicator Breakdown
 
-## Key Insight
+This chart compares the contribution of different indicators to the overall growth cost across boroughs.
 
-Vegetation and water-related land types appear to be the most frequently replaced in high-growth boroughs.
+While some areas are primarily affected by green loss, others show stronger heat penalties or water-edge pressure.
 
-This indicates that new development is often expanding into ecologically sensitive areas, such as green spaces and river-adjacent zones, rather than reusing previously built land.
+This indicates that environmental impacts of urban growth vary in structure, not just in magnitude.
 
-:::
+## How Do Boroughs Compare to the London Average?
+
+This chart compares borough-level values with the London average across key environmental indicators.
+
+Values above the average indicate relatively higher environmental cost. It helps show whether high-cost boroughs are consistently above average or driven by particular dimensions such as green loss or heat exposure.
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+
+df_rank = pd.read_csv("data/vme50_london_growth_D_borough_ranking_clean.csv")
+
+selected_borough = (
+    df_rank[["NAME", "d_mean_growth_cost_index"]]
+    .dropna()
+    .sort_values("d_mean_growth_cost_index", ascending=False)
+    .iloc[2]["NAME"]
+)
+
+indicators = {
+    "Growth Cost": "d_mean_growth_cost_index",
+    "Green-loss share": "d_green_loss_share_of_new_built",
+    "Water-edge share": "d_water_edge_share_of_new_built",
+    "NDVI loss": "d_mean_ndvi_loss",
+    "Heat penalty": "d_mean_heat_penalty_k"
+}
+
+row = df_rank.loc[df_rank["NAME"] == selected_borough].copy()
+
+if row.empty:
+    fallback = (
+        df_rank[["NAME", "d_mean_growth_cost_index"]]
+        .dropna()
+        .sort_values("d_mean_growth_cost_index", ascending=False)
+        .iloc[0]["NAME"]
+    )
+    selected_borough = fallback
+    row = df_rank.loc[df_rank["NAME"] == selected_borough].copy()
+
+london_avg = {
+    label: df_rank[col].mean()
+    for label, col in indicators.items()
+}
+
+borough_vals = {
+    label: float(row.iloc[0][col])
+    for label, col in indicators.items()
+}
+
+plot_df = pd.DataFrame({
+    "Metric": list(indicators.keys()) * 2,
+    "Value": list(borough_vals.values()) + list(london_avg.values()),
+    "Group": [selected_borough] * len(indicators) + ["London average"] * len(indicators)
+})
+
+fig3 = px.bar(
+    plot_df,
+    x="Metric",
+    y="Value",
+    color="Group",
+    barmode="group",
+    title=f"{selected_borough} vs London average",
+    labels={
+        "Metric": "",
+        "Value": "Indicator value"
+    },
+    color_discrete_map={
+        selected_borough: "#a50f15",
+        "London average": "#9ca3af"
+    }
+)
+
+fig3.update_layout(
+    height=560,
+    margin=dict(l=20, r=20, t=70, b=20),
+    paper_bgcolor="white",
+    plot_bgcolor="white",
+    legend_title_text=""
+)
+
+fig3.update_traces(
+    hovertemplate="<b>%{x}</b><br>%{fullData.name}: %{y:.3f}<extra></extra>"
+)
+
+fig3.show(config={
+    "displaylogo": False,
+    "modeBarButtonsToRemove": [
+        "zoom2d", "pan2d", "select2d", "lasso2d",
+        "zoomIn2d", "zoomOut2d", "autoScale2d",
+        "resetScale2d", "toggleSpikelines"
+    ]
+})
+```
+This figure illustrates land cover transitions associated with new development.
+
+### Land Cover Transitions
+
+This figure illustrates land cover transitions associated with new development.
+
+A large proportion of new built-up land replaces vegetated surfaces, indicating a direct link between urban expansion and green space loss.
+
+This reinforces the interpretation that recent growth is closely tied to ecological transformation.
 
 ## What the Results Suggest
 
+Together, the three analytical components provide a connected interpretation of environmental cost.
+
+The ranking identifies where growth is most costly, the land-replacement analysis explains what types of land contribute to this cost, and the borough comparison reveals whether these patterns are consistent across multiple environmental dimensions.
+
 Environmental cost is not evenly distributed across London.
 
-Higher-cost boroughs are not simply those with more development, but those where growth is more strongly associated with vegetation loss, heat exposure, and ecological disruption.
+The ranking results show that several outer boroughs consistently exhibit higher growth cost values. The land-replacement analysis suggests that this pattern is closely linked to the conversion of green and ecologically sensitive land into built-up areas.
 
-The combined use of spatial layers and borough-level charts shows that urban expansion can produce very different environmental outcomes depending on where it occurs and what land it replaces.
+Further comparison with the London average indicates that these boroughs often exceed city-wide values across multiple indicators, including vegetation loss and heat exposure. This suggests that high environmental cost is not driven by a single factor, but reflects a combination of pressures associated with urban expansion.
 
-## Why This Matters
+Together, these findings demonstrate that the environmental impact of urban growth depends not only on how much development occurs, but also on what types of land are being transformed and where this transformation takes place. This reinforces the importance of considering not only the quantity of growth, but also its location and underlying land transformation processes.
 
-By highlighting where urban growth is associated with ecological trade-offs, this application supports more informed planning decisions that prioritise not only development quantity but also environmental quality.
+### Why This Matters
 
-It helps shift attention from simply measuring how much development has occurred to understanding how and where that development may generate greater environmental cost.
+Urban growth is often evaluated by how much land is developed, but this alone does not capture its environmental consequences.
+
+By linking expansion to green loss, heat increase, and pressure on sensitive areas, this application highlights where development may carry higher ecological costs.
+
+These patterns are not evenly distributed across London, suggesting that some boroughs experience more intensive environmental trade-offs than others.
+
+This highlights the need for planning strategies that consider not only the scale of urban growth, but also its environmental consequences and spatial context.
 
 ## Behind the Application
 
@@ -311,19 +487,22 @@ It uses Google Earth Engine data including land-cover transitions, NDVI, land su
 
 ## Team Contributions
 
-* **A**: data preprocessing and land-cover preparation
-* **B**: imagery processing and vegetation indicators
-* **C**: land transition analysis and supporting datasets
-* **D**: growth cost index construction and borough aggregation
+* **A**: Data preprocessing and land-cover preparation
+* **B**: Imagery processing and vegetation indicators
+* **C**: Land transition analysis and supporting datasets
+* **D**: Growth cost index construction and borough aggregation
 * **E**: Earth Engine application interface and interaction design
-* **F**: chart design, front-end integration, Quarto showcase page, and interface text
+* **F**: Chart design, Quarto page development, front-end integration, and narrative framing
 
 ## Limitations
 
-This analysis relies on satellite-derived indicators which may not capture all fine-scale urban changes.
+This analysis relies on satellite-derived indicators which may not fully capture fine-scale or short-term urban changes. Uncertainty may arise from land-cover classification, temporal resolution, and the aggregation of multiple indicators into a composite index.
 
-Uncertainty may arise from land-cover classification, temporal resolution, and the aggregation of multiple indicators into a single comparative index.
+The growth cost index is based on equal weighting of indicators, which provides a transparent baseline but may not reflect the relative importance of different environmental processes. Alternative weighting schemes could lead to different borough rankings.
 
-The growth cost index should therefore be interpreted as a diagnostic and comparative measure rather than an absolute representation of environmental impact.
+In addition, borough-level aggregation may mask local variation within boroughs, meaning that intra-borough differences are not explicitly represented. Future work could explore sensitivity to indicator choice and weighting to better understand how different dimensions contribute to overall environmental cost.
+
+The index should therefore be interpreted as a comparative diagnostic tool rather than a precise measurement of environmental impact.
+
 
 

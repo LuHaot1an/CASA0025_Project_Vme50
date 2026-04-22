@@ -1,31 +1,28 @@
 /**
  * F_charts.js
- * Chart module for London Growth Cost Explorer
+ * Final chart module for London Growth Cost Explorer
  *
- * Author: F
  * Purpose:
- *   Build reusable Earth Engine ui.Chart objects for borough-level comparison,
- *   designed to plug into the UI app panel.
+ *   Reusable Earth Engine ui.Chart builders aligned with the final app design:
+ *   1) London-wide top borough ranking
+ *   2) Single-borough key indicators (standardised 0–1)
+ *   3) Single-borough vs London average comparison
  *
- * Expected inputs:
- *   1) rankingFc: ee.FeatureCollection with fields:
- *      - NAME
- *      - d_mean_growth_cost_index
- *        OR
- *      - mean_growth_cost_index
- *
- *   2) transitionFc: ee.FeatureCollection with fields:
- *      - NAME
- *      - grass_to_built_km2
- *      - trees_to_built_km2
- *      - shrub_to_built_km2
- *      - crops_to_built_km2
- *      - water_to_built_km2
+ * Expected input:
+ *   summaryFc: ee.FeatureCollection with fields:
+ *     - NAME
+ *     - d_mean_growth_cost_index
+ *     - d_green_loss_area_km2
+ *     - d_green_loss_share_of_new_built
+ *     - d_water_edge_area_km2
+ *     - d_water_edge_share_of_new_built
+ *     - d_mean_ndvi_loss
+ *     - d_mean_heat_penalty_k
+ *     - d_new_built_area_km2
  *
  * Notes:
  *   - Built for use inside a larger ui.Panel-based Earth Engine app.
- *   - Includes guard clauses to avoid chart crashes when boroughs or fields
- *     are missing.
+ *   - Includes small guard/fallback panels when boroughs are missing.
  */
 
 // ============================================================================
@@ -35,25 +32,17 @@
 var COLORS = {
   blueDark: '#123d7a',
   blueMid: '#2b6cb0',
+  red: '#a50f15',
+  grey: '#9ca3af',
   text: '#2f3b52',
   grid: '#d9dee7',
-  bg: '#ffffff',
-  grass: '#7fc97f',
-  trees: '#1b9e77',
-  shrub: '#66c2a5',
-  crops: '#ffd92f',
-  water: '#80b1d3',
-  muted: '#f3f4f6',
-  error: '#b91c1c'
+  bg: '#ffffff'
 };
 
 // ============================================================================
-// Helper functions
+// Helpers
 // ============================================================================
 
-/**
- * Merge two plain JavaScript option objects.
- */
 function mergeOptions(base, extra) {
   var out = {};
   Object.keys(base || {}).forEach(function(key) {
@@ -65,9 +54,6 @@ function mergeOptions(base, extra) {
   return out;
 }
 
-/**
- * Shared chart style.
- */
 function baseChartOptions() {
   return {
     backgroundColor: COLORS.bg,
@@ -91,19 +77,16 @@ function baseChartOptions() {
       textStyle: {color: COLORS.text, fontSize: 12}
     },
     chartArea: {
-      left: 110,
+      left: 90,
       right: 20,
       top: 45,
       bottom: 60,
-      width: '72%',
+      width: '74%',
       height: '70%'
     }
   };
 }
 
-/**
- * Return a safe numeric value from a feature property.
- */
 function num(ft, field) {
   return ee.Number(ee.Algorithms.If(
     ee.Algorithms.IsEqual(ft.get(field), null),
@@ -112,10 +95,6 @@ function num(ft, field) {
   ));
 }
 
-/**
- * Create a small fallback panel when chart data is missing.
- * Useful inside E's UI side panel.
- */
 exports.makeMessagePanel = function(title, message) {
   return ui.Panel([
     ui.Label(title || 'Chart unavailable', {
@@ -137,78 +116,6 @@ exports.makeMessagePanel = function(title, message) {
   });
 };
 
-/**
- * Detect which growth cost field exists.
- * Supports both your earlier draft and E/B style naming.
- */
-function getRankingFieldName() {
-  return ee.String('d_mean_growth_cost_index');
-}
-
-/**
- * Add a harmonised ranking field `growth_cost_for_chart`.
- * Tries d_mean_growth_cost_index first, then mean_growth_cost_index.
- */
-function normaliseRankingField(fc) {
-  return ee.FeatureCollection(fc).map(function(ft) {
-    var value = ee.Algorithms.If(
-      ee.Algorithms.IsEqual(ft.get('d_mean_growth_cost_index'), null),
-      ft.get('mean_growth_cost_index'),
-      ft.get('d_mean_growth_cost_index')
-    );
-    return ft.set('growth_cost_for_chart', ee.Number(value));
-  });
-}
-
-/**
- * Add a total transition field for ranking boroughs by total replaced land.
- */
-function addTotalTransition(fc) {
-  return ee.FeatureCollection(fc).map(function(ft) {
-    var total = num(ft, 'grass_to_built_km2')
-      .add(num(ft, 'trees_to_built_km2'))
-      .add(num(ft, 'shrub_to_built_km2'))
-      .add(num(ft, 'crops_to_built_km2'))
-      .add(num(ft, 'water_to_built_km2'));
-
-    return ft.set('total_transition_km2', total);
-  });
-}
-
-/**
- * Convert a borough feature into a FeatureCollection of land-type records.
- * Filters out zero-value categories to keep the pie chart clean.
- */
-function boroughToLandTypeFc(feature) {
-  var fc = ee.FeatureCollection([
-    ee.Feature(null, {
-      land_type: 'Grass',
-      area_km2: num(feature, 'grass_to_built_km2')
-    }),
-    ee.Feature(null, {
-      land_type: 'Trees',
-      area_km2: num(feature, 'trees_to_built_km2')
-    }),
-    ee.Feature(null, {
-      land_type: 'Shrub',
-      area_km2: num(feature, 'shrub_to_built_km2')
-    }),
-    ee.Feature(null, {
-      land_type: 'Crops',
-      area_km2: num(feature, 'crops_to_built_km2')
-    }),
-    ee.Feature(null, {
-      land_type: 'Water',
-      area_km2: num(feature, 'water_to_built_km2')
-    })
-  ]);
-
-  return fc.filter(ee.Filter.gt('area_km2', 0));
-}
-
-/**
- * Default reusable panel wrapper so charts look neat in E's control panel.
- */
 exports.wrapChart = function(chart, titleText) {
   var panel = ui.Panel([], ui.Panel.Layout.flow('vertical'), {
     padding: '8px 10px',
@@ -231,24 +138,87 @@ exports.wrapChart = function(chart, titleText) {
 };
 
 // ============================================================================
-// Export 1 — Top borough ranking chart
+// Internal preparation
 // ============================================================================
 
-/**
- * Create a horizontal bar chart of the top boroughs by growth cost index.
- *
- * @param {ee.FeatureCollection} rankingFc
- * @param {Object=} options
- *   - topN {number} default 10
- *   - title {string}
- * @return {ui.Chart}
- */
-exports.makeBoroughRankingChart = function(rankingFc, options) {
+function prepareSummaryFc(summaryFc) {
+  summaryFc = ee.FeatureCollection(summaryFc);
+
+  var indicatorFields = [
+    'd_new_built_area_km2',
+    'd_green_loss_area_km2',
+    'd_water_edge_area_km2',
+    'd_mean_ndvi_loss',
+    'd_mean_heat_penalty_k'
+  ];
+
+  var mins = {};
+  var maxs = {};
+
+  indicatorFields.forEach(function(field) {
+    mins[field] = ee.Number(summaryFc.aggregate_min(field));
+    maxs[field] = ee.Number(summaryFc.aggregate_max(field));
+  });
+
+  function scale(value, minVal, maxVal) {
+    value = ee.Number(value);
+    minVal = ee.Number(minVal);
+    maxVal = ee.Number(maxVal);
+    return ee.Number(ee.Algorithms.If(
+      maxVal.eq(minVal),
+      0,
+      value.subtract(minVal).divide(maxVal.subtract(minVal))
+    ));
+  }
+
+  return summaryFc.map(function(ft) {
+    var growthCost = num(ft, 'd_mean_growth_cost_index');
+    var greenShare = num(ft, 'd_green_loss_share_of_new_built');
+    var waterShare = num(ft, 'd_water_edge_share_of_new_built');
+    var ndviLoss = num(ft, 'd_mean_ndvi_loss');
+    var heatPenalty = num(ft, 'd_mean_heat_penalty_k');
+
+    return ft
+      .set('growth_cost_for_chart', growthCost)
+      .set('green_loss_share_for_chart', greenShare)
+      .set('water_edge_share_for_chart', waterShare)
+      .set('ndvi_loss_for_chart', ndviLoss)
+      .set('heat_penalty_for_chart', heatPenalty)
+      .set('std_new_built', scale(num(ft, 'd_new_built_area_km2'),
+                                  mins['d_new_built_area_km2'],
+                                  maxs['d_new_built_area_km2']))
+      .set('std_green_loss', scale(num(ft, 'd_green_loss_area_km2'),
+                                   mins['d_green_loss_area_km2'],
+                                   maxs['d_green_loss_area_km2']))
+      .set('std_water_edge', scale(num(ft, 'd_water_edge_area_km2'),
+                                   mins['d_water_edge_area_km2'],
+                                   maxs['d_water_edge_area_km2']))
+      .set('std_ndvi_loss', scale(ndviLoss,
+                                  mins['d_mean_ndvi_loss'],
+                                  maxs['d_mean_ndvi_loss']))
+      .set('std_heat_penalty', scale(heatPenalty,
+                                     mins['d_mean_heat_penalty_k'],
+                                     maxs['d_mean_heat_penalty_k']));
+  });
+}
+
+function getSingleBoroughFeature(summaryFc, boroughName) {
+  return ee.FeatureCollection(summaryFc)
+    .filter(ee.Filter.eq('NAME', boroughName))
+    .first();
+}
+
+// ============================================================================
+// Export 1 — London-wide ranking chart
+// ============================================================================
+
+exports.makeBoroughRankingChart = function(summaryFc, options) {
   options = options || {};
   var topN = options.topN || 10;
-  var title = options.title || ('Top ' + topN + ' Boroughs by Environmental Growth Cost Index');
+  var title = options.title ||
+    ('Top ' + topN + ' boroughs by Growth Cost Index (higher = greater environmental cost)');
 
-  var prepared = normaliseRankingField(rankingFc)
+  var prepared = prepareSummaryFc(summaryFc)
     .filter(ee.Filter.notNull(['NAME', 'growth_cost_for_chart']))
     .sort('growth_cost_for_chart', false)
     .limit(topN);
@@ -268,11 +238,21 @@ exports.makeBoroughRankingChart = function(rankingFc, options) {
         title: 'Mean Growth Cost Index',
         textStyle: {color: COLORS.text, fontSize: 12},
         titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
-        gridlines: {color: COLORS.grid}
+        gridlines: {color: COLORS.grid},
+        viewWindowMode: 'explicit',
+        viewWindow: {min: 0}
       },
       vAxis: {
         title: '',
         textStyle: {color: COLORS.text, fontSize: 12}
+      },
+      chartArea: {
+        left: 120,
+        right: 20,
+        top: 40,
+        bottom: 40,
+        width: '68%',
+        height: '72%'
       }
     }));
 
@@ -280,166 +260,178 @@ exports.makeBoroughRankingChart = function(rankingFc, options) {
 };
 
 // ============================================================================
-// Export 2 — Stacked land replacement chart
+// Export 2 — Single-borough key indicators (standardised 0–1)
 // ============================================================================
 
-/**
- * Create a stacked chart showing which land types were replaced by new built-up
- * land in boroughs with the largest total transition into built surfaces.
- *
- * @param {ee.FeatureCollection} transitionFc
- * @param {Object=} options
- *   - topN {number} default 8
- *   - title {string}
- * @return {ui.Chart}
- */
-exports.makeReplacedLandChart = function(transitionFc, options) {
-  options = options || {};
-  var topN = options.topN || 8;
-  var title = options.title || ('Land Types Replaced by New Built-up Areas (Top ' + topN + ')');
-
-  var ranked = addTotalTransition(transitionFc)
-    .filter(ee.Filter.notNull([
-      'NAME',
-      'grass_to_built_km2',
-      'trees_to_built_km2',
-      'shrub_to_built_km2',
-      'crops_to_built_km2',
-      'water_to_built_km2'
-    ]))
-    .sort('total_transition_km2', false)
-    .limit(topN);
-
-  var chart = ui.Chart.feature.byFeature({
-    features: ranked,
-    xProperty: 'NAME',
-    yProperties: [
-      'grass_to_built_km2',
-      'trees_to_built_km2',
-      'shrub_to_built_km2',
-      'crops_to_built_km2',
-      'water_to_built_km2'
-    ]
-  })
-    .setChartType('ColumnChart')
-    .setSeriesNames(['Grass', 'Trees', 'Shrub', 'Crops', 'Water'])
-    .setOptions(mergeOptions(baseChartOptions(), {
-      title: title,
-      isStacked: true,
-      colors: [
-        COLORS.grass,
-        COLORS.trees,
-        COLORS.shrub,
-        COLORS.crops,
-        COLORS.water
-      ],
-      hAxis: {
-        title: 'Borough',
-        textStyle: {color: COLORS.text, fontSize: 12},
-        titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
-        slantedText: true,
-        slantedTextAngle: 35,
-        gridlines: {color: COLORS.grid}
-      },
-      vAxis: {
-        title: 'Area replaced by new built-up land (km²)',
-        textStyle: {color: COLORS.text, fontSize: 12},
-        titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
-        gridlines: {color: COLORS.grid}
-      },
-      legend: {
-        position: 'right',
-        textStyle: {color: COLORS.text, fontSize: 12}
-      }
-    }));
-
-  return chart;
-};
-
-// ============================================================================
-// Export 3 — Single-borough pie chart
-// ============================================================================
-
-/**
- * Create a borough-specific pie chart showing replaced land composition.
- *
- * @param {ee.FeatureCollection} transitionFc
- * @param {string} boroughName
- * @param {Object=} options
- *   - title {string}
- * @return {ui.Chart|ui.Panel}
- */
-exports.makeSingleBoroughPieChart = function(transitionFc, boroughName, options) {
+exports.makeBoroughIndicatorsChart = function(summaryFc, boroughName, options) {
   options = options || {};
 
   if (!boroughName) {
     return exports.makeMessagePanel(
-      'Borough composition',
+      'Key indicators',
       'Please select a borough first.'
     );
   }
 
-  var boroughFc = ee.FeatureCollection(transitionFc)
-    .filter(ee.Filter.eq('NAME', boroughName));
+  var prepared = prepareSummaryFc(summaryFc);
+  var borough = ee.Feature(getSingleBoroughFeature(prepared, boroughName));
 
-  var borough = ee.Feature(boroughFc.first());
-
-  var landTypeFc = boroughToLandTypeFc(borough);
+  var indicatorFc = ee.FeatureCollection([
+    ee.Feature(null, {
+      indicator: 'New built',
+      value: num(borough, 'std_new_built')
+    }),
+    ee.Feature(null, {
+      indicator: 'Green loss',
+      value: num(borough, 'std_green_loss')
+    }),
+    ee.Feature(null, {
+      indicator: 'Water-edge',
+      value: num(borough, 'std_water_edge')
+    }),
+    ee.Feature(null, {
+      indicator: 'NDVI loss',
+      value: num(borough, 'std_ndvi_loss')
+    }),
+    ee.Feature(null, {
+      indicator: 'Heat penalty',
+      value: num(borough, 'std_heat_penalty')
+    })
+  ]);
 
   var chart = ui.Chart.feature.byFeature({
-    features: landTypeFc,
-    xProperty: 'land_type',
-    yProperties: ['area_km2']
+    features: indicatorFc,
+    xProperty: 'indicator',
+    yProperties: ['value']
   })
-    .setChartType('PieChart')
-    .setOptions({
-      title: options.title || ('Land Types Replaced in ' + boroughName),
-      backgroundColor: COLORS.bg,
-      fontName: 'Arial',
-      titleTextStyle: {
-        color: COLORS.text,
-        fontSize: 16,
-        bold: true
+    .setChartType('ColumnChart')
+    .setOptions(mergeOptions(baseChartOptions(), {
+      title: (options.title || (boroughName + ' - key indicators (standardised 0-1)')),
+      legend: {position: 'none'},
+      colors: [COLORS.blueMid],
+      hAxis: {
+        title: 'Indicator',
+        textStyle: {color: COLORS.text, fontSize: 12},
+        titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
+        slantedText: true,
+        slantedTextAngle: 20,
+        gridlines: {color: COLORS.grid}
       },
-      legend: {
-        position: 'right',
-        textStyle: {color: COLORS.text, fontSize: 12}
+      vAxis: {
+        title: 'Standardised value',
+        textStyle: {color: COLORS.text, fontSize: 12},
+        titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
+        gridlines: {color: COLORS.grid},
+        viewWindow: {min: 0, max: 1}
       },
-      pieSliceText: 'value',
-      pieHole: 0.35,
       chartArea: {
-        left: 20,
+        left: 60,
         right: 20,
-        top: 45,
-        bottom: 20,
-        width: '90%',
-        height: '78%'
-      },
-      slices: {
-        0: {color: COLORS.grass},
-        1: {color: COLORS.trees},
-        2: {color: COLORS.shrub},
-        3: {color: COLORS.crops},
-        4: {color: COLORS.water}
+        top: 40,
+        bottom: 55,
+        width: '74%',
+        height: '68%'
       }
-    });
+    }));
 
   return chart;
 };
 
 // ============================================================================
-// Export 4 — Convenience panel builder for the UI app
+// Export 3 — Single-borough vs London average comparison
 // ============================================================================
 
-/**
- * Build a ready-to-drop chart section for E's left control panel or side panel.
- *
- * @param {Object} params
- *   - rankingFc
- *   - transitionFc
- *   - selectedBoroughName
- * @return {ui.Panel}
- */
+exports.makeBoroughVsLondonChart = function(summaryFc, boroughName, options) {
+  options = options || {};
+
+  if (!boroughName) {
+    return exports.makeMessagePanel(
+      'Borough vs London',
+      'Please select a borough first.'
+    );
+  }
+
+  var prepared = prepareSummaryFc(summaryFc);
+  var borough = ee.Feature(getSingleBoroughFeature(prepared, boroughName));
+
+  var londonGrowthCost = ee.Number(prepared.aggregate_mean('growth_cost_for_chart'));
+  var londonGreenShare = ee.Number(prepared.aggregate_mean('green_loss_share_for_chart'));
+  var londonWaterShare = ee.Number(prepared.aggregate_mean('water_edge_share_for_chart'));
+  var londonNdviLoss = ee.Number(prepared.aggregate_mean('ndvi_loss_for_chart'));
+  var londonHeatPenalty = ee.Number(prepared.aggregate_mean('heat_penalty_for_chart'));
+
+  var comparisonFc = ee.FeatureCollection([
+    ee.Feature(null, {
+      metric: 'Growth Cost',
+      Borough: num(borough, 'growth_cost_for_chart'),
+      London: londonGrowthCost
+    }),
+    ee.Feature(null, {
+      metric: 'Green-loss share',
+      Borough: num(borough, 'green_loss_share_for_chart'),
+      London: londonGreenShare
+    }),
+    ee.Feature(null, {
+      metric: 'Water-edge share',
+      Borough: num(borough, 'water_edge_share_for_chart'),
+      London: londonWaterShare
+    }),
+    ee.Feature(null, {
+      metric: 'NDVI loss',
+      Borough: num(borough, 'ndvi_loss_for_chart'),
+      London: londonNdviLoss
+    }),
+    ee.Feature(null, {
+      metric: 'Heat penalty',
+      Borough: num(borough, 'heat_penalty_for_chart'),
+      London: londonHeatPenalty
+    })
+  ]);
+
+  var chart = ui.Chart.feature.byFeature({
+    features: comparisonFc,
+    xProperty: 'metric',
+    yProperties: ['Borough', 'London']
+  })
+    .setChartType('ColumnChart')
+    .setOptions(mergeOptions(baseChartOptions(), {
+      title: options.title || (boroughName + ' vs London average (red = borough, grey = London)'),
+      colors: [COLORS.red, COLORS.grey],
+      hAxis: {
+        title: '',
+        textStyle: {color: COLORS.text, fontSize: 12},
+        titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
+        slantedText: true,
+        slantedTextAngle: 20,
+        gridlines: {color: COLORS.grid}
+      },
+      vAxis: {
+        title: 'Indicator value',
+        textStyle: {color: COLORS.text, fontSize: 12},
+        titleTextStyle: {color: COLORS.text, fontSize: 12, italic: false},
+        gridlines: {color: COLORS.grid}
+      },
+      legend: {
+        position: 'right',
+        textStyle: {color: COLORS.text, fontSize: 12}
+      },
+      chartArea: {
+        left: 60,
+        right: 20,
+        top: 40,
+        bottom: 55,
+        width: '74%',
+        height: '68%'
+      }
+    }));
+
+  return chart;
+};
+
+// ============================================================================
+// Export 4 — Ready-to-drop panel builder
+// ============================================================================
+
 exports.buildChartsPanel = function(params) {
   params = params || {};
 
@@ -454,32 +446,27 @@ exports.buildChartsPanel = function(params) {
     margin: '4px 0 6px 0'
   }));
 
-  if (params.rankingFc) {
+  if (params.summaryFc) {
     panel.add(exports.wrapChart(
-      exports.makeBoroughRankingChart(params.rankingFc, {topN: 10}),
+      exports.makeBoroughRankingChart(params.summaryFc, {topN: 10}),
       null
     ));
   }
 
-  if (params.transitionFc) {
+  if (params.summaryFc && params.selectedBoroughName) {
     panel.add(exports.wrapChart(
-      exports.makeReplacedLandChart(params.transitionFc, {topN: 8}),
+      exports.makeBoroughIndicatorsChart(params.summaryFc, params.selectedBoroughName),
       null
     ));
-  }
 
-  if (params.transitionFc && params.selectedBoroughName) {
     panel.add(exports.wrapChart(
-      exports.makeSingleBoroughPieChart(
-        params.transitionFc,
-        params.selectedBoroughName
-      ),
+      exports.makeBoroughVsLondonChart(params.summaryFc, params.selectedBoroughName),
       null
     ));
   } else {
     panel.add(exports.makeMessagePanel(
-      'Borough composition',
-      'Select a borough in the UI to show its replaced-land composition.'
+      'Borough-level charts',
+      'Select a borough in the UI to show its key indicators and London comparison.'
     ));
   }
 
