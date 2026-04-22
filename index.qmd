@@ -34,7 +34,6 @@ To address this, the application combines spatial analysis with borough-level in
 
 [View the source code on GitHub](https://github.com/LuHaot1an/CASA0025_Project_Vme50)
 
-::: {.callout-tip appearance="simple"}
 
 ## Start exploring
 
