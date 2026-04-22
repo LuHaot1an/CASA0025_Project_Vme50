@@ -7,8 +7,7 @@ An interactive web application exploring where urban growth in London has occurr
 👉 https://your-username.github.io/your-repo-name/
 
 ## 🗺️ Interactive GEE Application
-👉[ https://your-gee-app-link](https://code.earthengine.google.com/564cdd466d2d4298a9449d9a4b5a1e10)
-
+👉(https://extreme-flame-493900-h7.projects.earthengine.app/view/london-growth-cost-explorer)
 ---
 
 ## 📌 Project Overview
