@@ -1,11 +1,95 @@
-Use this repository to host a website for your CASA0025 final project by following these stpes: 
 
-1. clone this repository 
-2. install [quarto](https://quarto.org/docs/download/) 
-3. edit the 'index.qmd' file with the contents of your project
-4. using terminal, navigate to the project directory and run "quarto render" 
-5. push the changes to your github repository 
-6. on github, navigate to Settings>Pages>Build and Deployment. Make sure that under "Source" it says "deploy from branch". Under "Branch", select "Main" in the first dropdown and "Docs" under the second drop down. Then press "Save" 
+# London Growth Cost Explorer
 
-Your website should now be available under 
-https://{your_username}.github.io/{your_repo_name}
+An interactive web application exploring where urban growth in London has occurred and what environmental cost has accompanied that growth.
+
+## 🌍 Live Website
+👉 https://your-username.github.io/your-repo-name/
+
+## 🗺️ Interactive GEE Application
+👉[ https://your-gee-app-link](https://code.earthengine.google.com/564cdd466d2d4298a9449d9a4b5a1e10)
+
+---
+
+## 📌 Project Overview
+
+Urban expansion is often mapped simply as new built-up land, but this does not reveal what has been lost or whether certain areas experience disproportionately higher environmental impact.
+
+This project goes beyond mapping growth by integrating multiple environmental indicators—including green loss, heat penalty, NDVI loss, and water-edge encroachment—into a composite **Growth Cost Index**. The application enables users to identify where urban growth is most environmentally costly and explore why these patterns occur across London boroughs.
+
+---
+
+## 🎯 Key Features
+
+- Borough-level **Growth Cost Index ranking**
+- Identification of **land types replaced by new built-up areas**
+- Multi-dimensional comparison of environmental indicators
+- Interactive **Earth Engine map interface**
+- Linked **charts and narrative explanations** for interpretation
+
+---
+
+## 🧠 Method Overview
+
+The analysis combines remote sensing and spatial aggregation:
+
+1. Detect new built-up areas using land cover datasets  
+2. Calculate environmental indicators (NDVI loss, heat penalty, water-edge encroachment)  
+3. Aggregate results to borough level  
+4. Construct a composite Growth Cost Index  
+5. Visualise results through an interactive application and supporting charts  
+
+---
+
+## 🗂️ Repository Structure
+
+
+
+├── index.qmd              # Quarto webpage source
+├── docs/                  # Rendered site (GitHub Pages)
+├── src/                   # Earth Engine scripts (A–F workflow)
+├── data/                  # Borough-level datasets
+├── styles.css             # Page styling
+
+
+
+---
+
+## 👥 Team Contributions
+
+### Preprocessing
+- **A**: Data acquisition and standardisation across multi-source datasets  
+- **B**: Image preprocessing and ensuring spatial-temporal consistency  
+
+### Analysis
+- **C**: Land-use change detection and built-up area identification  
+- **D**: Environmental indicator calculation and Growth Cost Index construction  
+
+### Visualisation
+- **E**: GEE interface design and interactive map development  
+- **F**: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation  
+
+---
+
+## ⚙️ Deployment
+
+This project is built using **Quarto** and deployed via **GitHub Pages** from the `/docs` folder.
+
+To rebuild locally:
+
+
+---
+
+## 📊 Data Sources
+
+* Dynamic World (Google Earth Engine)
+* Sentinel-2
+* Landsat 8/9
+* JRC Global Surface Water
+* London Borough Boundaries
+
+---
+
+## 📎 Notes
+
+This project was developed as part of CASA0025 (Spatial Data Science) at UCL.
