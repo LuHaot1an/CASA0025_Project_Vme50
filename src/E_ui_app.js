@@ -1,7 +1,7 @@
 // =====================================================================
 //  CASA0025: Building Spatial Applications with Big Data
 //  Group: vme50  -  London Growth Cost Explorer
-//  Member E  -  E_ui_app.js  -  User Interface and Interaction Layer
+//  Member Zhuxun Chen  -  E_ui_app.js  -  User Interface and Interaction Layer
 // =====================================================================
 //
 //  Purpose
@@ -395,8 +395,11 @@ var STYLE = {
                   margin: '0 0 6px 0', backgroundColor: '#fafafa'},
   headlineValue: {fontSize: '22px', fontWeight: 'bold', color: '#a50f15',
                   margin: '2px 0', backgroundColor: '#fafafa'},
-  footer       : {fontSize: '10px', color: '#888888',
-                  margin: '12px 14px 12px 14px', backgroundColor: '#ffffff'}
+    footer       : {fontSize: '10px', color: '#888888',
+                  margin: '12px 14px 12px 14px', backgroundColor: '#ffffff'},
+  loading      : {fontSize: '11px', color: '#a50f15',
+                  margin: '4px 14px 6px 14px', backgroundColor: '#ffffff',
+                  fontWeight: 'bold'}
 };
 
 // ----- 4.2 Header ---------------------------------------------------------
@@ -421,6 +424,18 @@ var indicatorDescriptionLabel = ui.Label('', {
   fontSize: '11px', color: '#444444',
   margin: '4px 14px 6px 14px', backgroundColor: '#ffffff'
 });
+
+var loadingLabel = ui.Label('', STYLE.loading);
+loadingLabel.style().set('shown', false);
+
+function showLoading(message) {
+  loadingLabel.setValue(message || 'Loading...');
+  loadingLabel.style().set('shown', true);
+}
+
+function hideLoading() {
+  loadingLabel.style().set('shown', false);
+}
 
 function buildIndicatorPicker() {
   var items = Object.keys(INDICATORS).map(function(key) {
@@ -450,9 +465,10 @@ function buildIndicatorPicker() {
 
   indicatorDescriptionLabel.setValue(INDICATORS[STATE.activeIndicator].description);
 
-  return ui.Panel([
+    return ui.Panel([
     ui.Label('Indicator layer', STYLE.sectionTitle),
     select,
+    loadingLabel,
     indicatorDescriptionLabel
   ], ui.Panel.Layout.flow('vertical'), {backgroundColor: '#ffffff'});
 }
@@ -489,6 +505,250 @@ var summaryCardPanel = ui.Panel([], ui.Panel.Layout.flow('vertical'), {
   border: '1px solid #e0e0e0'
 });
 
+var chartsPanel = ui.Panel([], ui.Panel.Layout.flow('vertical'), {
+  margin: '4px 12px 8px 12px',
+  padding: '10px 12px',
+  backgroundColor: '#fafafa',
+  border: '1px solid #e0e0e0'
+});
+
+// ----- 4.5a Charts rendering --------------------------------------------
+// Charts are rendered client-side from the cached borough summary rows,
+// so they update instantly alongside the summary card without any new
+// server-side EE computation.
+
+function sortRowsByMeanCostDesc() {
+  return Object.keys(CACHE.boroughsByCode)
+    .map(function(code) { return CACHE.boroughsByCode[code]; })
+    .sort(function(a, b) { return b.meanCost - a.meanCost; });
+}
+
+function buildTopRankingChart(topN) {
+  var ranked = sortRowsByMeanCostDesc().slice(0, topN || 10);
+
+  var values = ranked.map(function(r) { return r.meanCost; });
+  var labels = ranked.map(function(r) { return r.name; });
+
+  return ui.Chart.array.values(values, 0, labels)
+    .setChartType('BarChart')
+    .setOptions({
+      title: 'Top ' + ranked.length + ' boroughs by Growth Cost Index (higher = greater environmental cost)',
+      legend: {position: 'none'},
+      colors: ['#123d7a'],
+      bars: 'horizontal',
+      hAxis: {
+        title: 'Mean Growth Cost Index',
+        viewWindowMode: 'explicit',
+        viewWindow: {min: 0}
+      },
+      vAxis: {
+        title: ''
+      },
+      chartArea: {
+        left: 120,
+        right: 20,
+        top: 40,
+        bottom: 40,
+        width: '68%',
+        height: '72%'
+      }
+    });
+}
+
+function buildBoroughIndicatorsChart(row) {
+  var allRows = Object.keys(CACHE.boroughsByCode).map(function(code) {
+    return CACHE.boroughsByCode[code];
+  });
+
+  function minMax(field) {
+    var values = allRows.map(function(r) {
+      return Number(r[field] || 0);
+    });
+    return {
+      min: Math.min.apply(null, values),
+      max: Math.max.apply(null, values)
+    };
+  }
+
+  function scale01(value, range) {
+    if (range.max === range.min) return 0;
+    return (Number(value || 0) - range.min) / (range.max - range.min);
+  }
+
+  var ranges = {
+    newBuiltKm2:  minMax('newBuiltKm2'),
+    greenLossKm2: minMax('greenLossKm2'),
+    waterEdgeKm2: minMax('waterEdgeKm2'),
+    meanNdviLoss: minMax('meanNdviLoss'),
+    meanLstK:     minMax('meanLstK')
+  };
+
+  var values = [
+    scale01(row.newBuiltKm2,  ranges.newBuiltKm2),
+    scale01(row.greenLossKm2, ranges.greenLossKm2),
+    scale01(row.waterEdgeKm2, ranges.waterEdgeKm2),
+    scale01(row.meanNdviLoss, ranges.meanNdviLoss),
+    scale01(row.meanLstK,     ranges.meanLstK)
+  ];
+
+  var labels = [
+    'New built',
+    'Green loss',
+    'Water-edge',
+    'NDVI loss',
+    'LST penalty'
+  ];
+
+  return ui.Chart.array.values(values, 0, labels)
+    .setChartType('ColumnChart')
+    .setOptions({
+      title: row.name + ' - key indicators (standardised 0-1)',
+      legend: {position: 'none'},
+      colors: ['#2b6cb0'],
+      hAxis: {
+        title: 'Indicator',
+        slantedText: true,
+        slantedTextAngle: 20
+      },
+      vAxis: {
+        title: 'Standardised value',
+        viewWindow: {min: 0, max: 1}
+      },
+      chartArea: {
+        left: 60,
+        right: 20,
+        top: 40,
+        bottom: 55,
+        width: '74%',
+        height: '68%'
+      }
+    });
+}
+function buildBoroughVsLondonChart(row) {
+  var londonAvg = CACHE.londonTotals ? CACHE.londonTotals.meanCostAvg : 0;
+
+  // Scale % shares to 0-1 so the comparison chart stays readable.
+  var boroughGreenShare = row.newBuiltKm2 > 0 ? row.greenLossKm2 / row.newBuiltKm2 : 0;
+  var boroughWaterShare = row.newBuiltKm2 > 0 ? row.waterEdgeKm2 / row.newBuiltKm2 : 0;
+
+  var londonRows = Object.keys(CACHE.boroughsByCode).map(function(code) {
+    return CACHE.boroughsByCode[code];
+  });
+
+  var londonGreenShare = 0;
+  var londonWaterShare = 0;
+  londonRows.forEach(function(r) {
+    if (r.newBuiltKm2 > 0) {
+      londonGreenShare += r.greenLossKm2 / r.newBuiltKm2;
+      londonWaterShare += r.waterEdgeKm2 / r.newBuiltKm2;
+    }
+  });
+  londonGreenShare = londonRows.length ? londonGreenShare / londonRows.length : 0;
+  londonWaterShare = londonRows.length ? londonWaterShare / londonRows.length : 0;
+
+  var comparisonFc = ee.FeatureCollection([
+    ee.Feature(null, {
+      metric: 'Growth Cost',
+      Borough: row.meanCost || 0,
+      London: londonAvg || 0
+    }),
+    ee.Feature(null, {
+      metric: 'Green-loss share',
+      Borough: boroughGreenShare,
+      London: londonGreenShare
+    }),
+    ee.Feature(null, {
+      metric: 'Water-edge share',
+      Borough: boroughWaterShare,
+      London: londonWaterShare
+    })
+  ]);
+
+  return ui.Chart.feature.byFeature({
+      features: comparisonFc,
+      xProperty: 'metric',
+      yProperties: ['Borough', 'London']
+    })
+    .setChartType('ColumnChart')
+    .setOptions({
+      title: row.name + ' vs London average (red = borough, grey = London)',
+      colors: ['#a50f15', '#9ca3af'],
+      hAxis: {
+        title: ''
+      },
+      vAxis: {
+        title: 'Indexed / share value'
+      },
+      chartArea: {
+        left: 60,
+        right: 20,
+        top: 40,
+        bottom: 45,
+        width: '74%',
+        height: '68%'
+      }
+    });
+}
+
+function renderDefaultCharts() {
+  chartsPanel.clear();
+
+  chartsPanel.add(ui.Label('Charts', {
+    fontSize: '12px',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    margin: '0 0 6px 0',
+    backgroundColor: '#fafafa'
+  }));
+
+    chartsPanel.add(ui.Label(
+    'London-wide ranking view. Higher Growth Cost Index values indicate greater environmental cost of urban growth. Select a borough to switch to borough-level charts.',
+    {
+      fontSize: '11px',
+      color: '#666666',
+      margin: '0 0 8px 0',
+      backgroundColor: '#fafafa'
+    }
+  ));
+
+  chartsPanel.add(buildTopRankingChart(10));
+}
+
+function renderBoroughCharts(row) {
+  chartsPanel.clear();
+
+  chartsPanel.add(ui.Label('Charts', {
+    fontSize: '12px',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    margin: '0 0 6px 0',
+    backgroundColor: '#fafafa'
+  }));
+
+chartsPanel.add(ui.Label(
+  'Selected borough: ' + row.name + '. The first chart shows its key indicators; the second compares it with the London borough average. Values above the London average indicate relatively higher environmental cost. Red bars represent the selected borough; grey bars represent the London average.',
+  {
+    fontSize: '11px',
+    color: '#666666',
+    margin: '0 0 6px 0',
+    backgroundColor: '#fafafa'
+  }
+));
+  
+  chartsPanel.add(ui.Label(
+    'Note: the first chart standardises each indicator to a 0-1 scale across all London boroughs, so higher bars indicate relatively higher values within that indicator.',
+    {
+      fontSize: '10px',
+      color: '#888888',
+      margin: '0 0 8px 0',
+      backgroundColor: '#fafafa'
+    }
+  ));
+  
+  chartsPanel.add(buildBoroughIndicatorsChart(row));
+  chartsPanel.add(buildBoroughVsLondonChart(row));
+}
+
 function setCardMessage(message, isError) {
   summaryCardPanel.clear();
   summaryCardPanel.add(ui.Label(message, {
@@ -506,12 +766,33 @@ setCardMessage('Loading London borough statistics...', false);
 var boroughSelect = ui.Select({
   items: ['Loading boroughs...'],
   placeholder: 'Loading boroughs...',
-  onChange: function(value) {
-    if (!value || value === 'Loading boroughs...') return;
-    handleBoroughPickedByName(value, /*zoomToIt=*/true);
-  },
+onChange: function(value) {
+  if (!value || value === 'Loading boroughs...') return;
+  showBoroughLoading('Loading ' + value + '...');
+  handleBoroughPickedByName(value, /*zoomToIt=*/true);
+},
   style: {margin: '4px 14px 4px 14px', stretch: 'horizontal'}
 });
+
+var boroughLoadingLabel = ui.Label('', {
+  fontSize: '12px',
+  fontWeight: 'bold',
+  color: '#b30000',
+  margin: '2px 14px 8px 14px',
+  padding: '6px 8px',
+  backgroundColor: '#fff5f5',
+  border: '1px solid #f1b0b7',
+  shown: false
+});
+
+function showBoroughLoading(message) {
+  boroughLoadingLabel.setValue(message || 'Loading borough...');
+  boroughLoadingLabel.style().set('shown', true);
+}
+
+function hideBoroughLoading() {
+  boroughLoadingLabel.style().set('shown', false);
+}
 
 // "Reset" button clears the selection and recentres on all of London.
 // We use `setCenter` with the known Greater London centre (approx. the
@@ -526,17 +807,26 @@ var resetButton = ui.Button({
     mainMap.setCenter(LONDON_CENTER.lon, LONDON_CENTER.lat, LONDON_CENTER.zoom);
     renderMap();
     renderLondonOverviewCard();
+    renderDefaultCharts();
   },
   style: {margin: '2px 14px 4px 14px', stretch: 'horizontal'}
 });
 
 function buildBoroughSection() {
   var hint = ui.Label('Tip: you can also click anywhere on the map.', STYLE.hint);
+  var renderHint = ui.Label(
+    'Map layers may take a few seconds to render after switching boroughs or indicators.',
+    STYLE.hint
+  );
+
   return ui.Panel([
     ui.Label('Borough explorer', STYLE.sectionTitle),
     boroughSelect,
+    boroughLoadingLabel,
     hint,
+    renderHint,
     summaryCardPanel,
+    chartsPanel,
     resetButton
   ], ui.Panel.Layout.flow('vertical'), {backgroundColor: '#ffffff'});
 }
@@ -778,9 +1068,14 @@ function handleBoroughPickedByName(name, zoomToIt) {
 // polygon test - both O(1) per borough, instantaneous over 33 boroughs.
 // This is the main reason the demo can respond in <100 ms on every click.
 mainMap.onClick(function(coords) {
-  if (!CACHE.ready) {
+    showLoading('Finding clicked borough...');
+    if (!CACHE.ready) {
+    showLoading('Still loading borough data...');
     setCardMessage('Still loading borough data... try again in a moment.',
                    false);
+    ui.util.setTimeout(function() {
+      hideLoading();
+    }, 800);
     return;
   }
 
@@ -799,6 +1094,7 @@ mainMap.onClick(function(coords) {
   }
 
   if (!hitCode) {
+    hideLoading();
     setCardMessage('Clicked outside any London borough. Try inside the ' +
                    'Greater London boundary.', true);
     return;
@@ -826,18 +1122,29 @@ function activateBorough(gssCode, zoomToIt) {
   if (!row) return;
 
   STATE.selectedBorough = {
-    code: gssCode, name: row.name, stats: row
+    code: gssCode,
+    name: row.name,
+    stats: row
   };
 
-  // Zoom via cached centroid - no EE round-trip.
+  // 先更新 summary 和 charts（快）
+  renderBoroughSummaryCard(row);
+  renderBoroughCharts(row);
+
+
+  showBoroughLoading('Rendering map for ' + row.name + '...');
+
+
   if (zoomToIt && row.centroid) {
     mainMap.setCenter(row.centroid[0], row.centroid[1], 12);
   }
 
   renderMap();
-  renderBoroughSummaryCard(row);
-}
 
+  ui.util.setTimeout(function() {
+    hideBoroughLoading();
+  }, 1500);
+}
 // ----- 5.5 Summary card rendering -----------------------------------------
 // Helper: format a number to N decimals, guarding against NaN / null.
 function fmt(value, digits, suffix) {
@@ -927,6 +1234,8 @@ function renderLondonOverviewCard() {
     {fontSize: '10px', color: '#888888', margin: '6px 0 0 0',
      backgroundColor: '#fafafa'}
   ));
+
+  renderDefaultCharts();
 }
 
 // ----- 5.6 Kick everything off --------------------------------------------
@@ -935,3 +1244,4 @@ primeBoroughCache();
 // =====================================================================
 //  END OF FILE
 // =====================================================================
+
