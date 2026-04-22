@@ -35,13 +35,13 @@ To address this, the application combines spatial analysis with borough-level in
 [View the source code on GitHub](https://github.com/LuHaot1an/CASA0025_Project_Vme50)
 
 
+::: {.callout-tip appearance="simple"}
 ## Start exploring
 
-Use the interactive map to explore spatial patterns of urban growth and environmental cost.
-
-Compare boroughs with the highest environmental cost using the ranking chart.
-
-Examine the land-replacement chart to understand what types of environments are being lost.
+- Use the interactive map to explore spatial patterns of urban growth and environmental cost.
+- Compare boroughs with the highest environmental cost using the ranking chart.
+- Examine the land-replacement chart to understand what types of environments are being lost.
+:::
 
 ## Project Summary
 
@@ -61,26 +61,30 @@ The application also supports policy teams and community stakeholders by providi
 
 ### Data
 
-These datasets are selected to represent different dimensions of environmental cost associated with urban growth.
+This project integrates multiple Earth Engine datasets to capture different dimensions of environmental change associated with urban growth.
 
-Dynamic World is used to identify land cover transitions and newly built-up areas, providing the basis for understanding what types of land are being converted.
+Dynamic World provides land cover classification data, enabling identification of land cover types and their changes over time.
 
-Sentinel-2 imagery represents vegetation condition through NDVI, capturing changes in green cover. Landsat 8/9 provides information on surface thermal conditions, reflecting heat-related impacts of urban expansion.
+Sentinel-2 imagery represents vegetation condition through NDVI, allowing assessment of changes in green cover.
 
-JRC Global Surface Water represents stable water bodies and water-adjacent environments, allowing identification of areas potentially affected by development pressure.
+Landsat 8/9 provides land surface temperature data, capturing thermal conditions associated with urban expansion.
 
-London borough boundaries are used to aggregate results and enable comparison across the city, supporting planning-relevant interpretation.
+JRC Global Surface Water represents stable water bodies and water-adjacent environments, supporting analysis of development pressure near sensitive areas.
+
+London borough boundaries provide the spatial framework for aggregating results and enabling comparison across the city.
+
 
 ### Methodology
 
-Urban growth was identified by detecting transitions to built-up land using Dynamic World classifications. Only newly developed areas were retained for analysis.
+Urban growth was identified by detecting transitions to built-up land using Dynamic World classifications, with analysis restricted to newly developed areas to isolate recent expansion processes.
 
-Environmental impacts were then calculated for these new built-up pixels. Green loss was derived from vegetation-to-built transitions, NDVI loss from changes in vegetation index, heat penalty from land surface temperature differences, and water-edge pressure from proximity to stable surface water.
+Environmental impacts were then calculated specifically for these new built-up pixels. Green loss was derived from vegetation-to-built transitions, NDVI loss from changes in vegetation index, heat penalty from differences in land surface temperature, and water-edge pressure from proximity to stable surface water.
 
-All indicators were standardised and combined into a composite Growth Cost Index to enable comparison across boroughs.
+All indicators were standardised to ensure comparability across different units and scales, and combined into a composite Growth Cost Index using equal weighting.
 
-Finally, results were aggregated to borough level to support spatial comparison and interactive exploration.
+Finally, results were aggregated to borough level, enabling comparison of where urban expansion has generated relatively higher environmental cost across London.
 
+This workflow ensures that environmental cost is assessed in direct relation to new development rather than pre-existing urban conditions, providing a more policy-relevant and decision-oriented understanding of spatial patterns of urban growth impact.
 ### Interface
 
 The interface combines an interactive map, control panel, and summary outputs to support a clear analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.
@@ -235,8 +239,8 @@ This map shows the spatial distribution of the Growth Cost Index across London b
 Higher values indicate areas where recent urban expansion is associated with greater environmental cost.
 
 The pattern suggests that environmental impacts are unevenly distributed across the city.
-::: {.callout-note appearance="simple"}
 
+::: {.callout-note appearance="simple"}
 **Key Insight**
 
 Environmental costs of urban growth are not evenly distributed across London.

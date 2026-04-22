@@ -250,18 +250,108 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Use this repository to host a website for your CASA0025 final project by following these stpes:</p>
+<section id="london-growth-cost-explorer" class="level1">
+<h1>London Growth Cost Explorer</h1>
+<p>An interactive web application exploring where urban growth in London has occurred and what environmental cost has accompanied that growth.</p>
+<section id="live-website" class="level2">
+<h2 class="anchored" data-anchor-id="live-website">🌍 Live Website</h2>
+<p>👉 https://your-username.github.io/your-repo-name/</p>
+</section>
+<section id="interactive-gee-application" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-gee-application">🗺️ Interactive GEE Application</h2>
+<p>👉<a href="https://code.earthengine.google.com/564cdd466d2d4298a9449d9a4b5a1e10">https://your-gee-app-link</a></p>
+<hr>
+</section>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">📌 Project Overview</h2>
+<p>Urban expansion is often mapped simply as new built-up land, but this does not reveal what has been lost or whether certain areas experience disproportionately higher environmental impact.</p>
+<p>This project goes beyond mapping growth by integrating multiple environmental indicators—including green loss, heat penalty, NDVI loss, and water-edge encroachment—into a composite <strong>Growth Cost Index</strong>. The application enables users to identify where urban growth is most environmentally costly and explore why these patterns occur across London boroughs.</p>
+<hr>
+</section>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">🎯 Key Features</h2>
+<ul>
+<li>Borough-level <strong>Growth Cost Index ranking</strong></li>
+<li>Identification of <strong>land types replaced by new built-up areas</strong></li>
+<li>Multi-dimensional comparison of environmental indicators</li>
+<li>Interactive <strong>Earth Engine map interface</strong></li>
+<li>Linked <strong>charts and narrative explanations</strong> for interpretation</li>
+</ul>
+<hr>
+</section>
+<section id="method-overview" class="level2">
+<h2 class="anchored" data-anchor-id="method-overview">🧠 Method Overview</h2>
+<p>The analysis combines remote sensing and spatial aggregation:</p>
 <ol type="1">
-<li>clone this repository</li>
-<li>install <a href="https://quarto.org/docs/download/">quarto</a></li>
-<li>edit the ‘index.qmd’ file with the contents of your project</li>
-<li>using terminal, navigate to the project directory and run “quarto render”</li>
-<li>push the changes to your github repository</li>
-<li>on github, navigate to Settings&gt;Pages&gt;Build and Deployment. Make sure that under “Source” it says “deploy from branch”. Under “Branch”, select “Main” in the first dropdown and “Docs” under the second drop down. Then press “Save”</li>
+<li>Detect new built-up areas using land cover datasets<br>
+</li>
+<li>Calculate environmental indicators (NDVI loss, heat penalty, water-edge encroachment)<br>
+</li>
+<li>Aggregate results to borough level<br>
+</li>
+<li>Construct a composite Growth Cost Index<br>
+</li>
+<li>Visualise results through an interactive application and supporting charts</li>
 </ol>
-<p>Your website should now be available under https://{your_username}.github.io/{your_repo_name}</p>
+<hr>
+</section>
+<section id="repository-structure" class="level2">
+<h2 class="anchored" data-anchor-id="repository-structure">🗂️ Repository Structure</h2>
+<p>├── index.qmd # Quarto webpage source ├── docs/ # Rendered site (GitHub Pages) ├── src/ # Earth Engine scripts (A–F workflow) ├── data/ # Borough-level datasets ├── styles.css # Page styling</p>
+<hr>
+</section>
+<section id="team-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="team-contributions">👥 Team Contributions</h2>
+<section id="preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing">Preprocessing</h3>
+<ul>
+<li><strong>A</strong>: Data acquisition and standardisation across multi-source datasets<br>
+</li>
+<li><strong>B</strong>: Image preprocessing and ensuring spatial-temporal consistency</li>
+</ul>
+</section>
+<section id="analysis" class="level3">
+<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
+<ul>
+<li><strong>C</strong>: Land-use change detection and built-up area identification<br>
+</li>
+<li><strong>D</strong>: Environmental indicator calculation and Growth Cost Index construction</li>
+</ul>
+</section>
+<section id="visualisation" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation">Visualisation</h3>
+<ul>
+<li><strong>E</strong>: GEE interface design and interactive map development<br>
+</li>
+<li><strong>F</strong>: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="deployment" class="level2">
+<h2 class="anchored" data-anchor-id="deployment">⚙️ Deployment</h2>
+<p>This project is built using <strong>Quarto</strong> and deployed via <strong>GitHub Pages</strong> from the <code>/docs</code> folder.</p>
+<p>To rebuild locally:</p>
+<hr>
+</section>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">📊 Data Sources</h2>
+<ul>
+<li>Dynamic World (Google Earth Engine)</li>
+<li>Sentinel-2</li>
+<li>Landsat 8/9</li>
+<li>JRC Global Surface Water</li>
+<li>London Borough Boundaries</li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">📎 Notes</h2>
+<p>This project was developed as part of CASA0025 (Spatial Data Science) at UCL.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

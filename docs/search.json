@@ -74,28 +74,21 @@
     "href": "index.html",
     "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "This interactive application examines not only where urban growth has occurred in London, but also what environmental cost has accompanied that growth.\nUrban expansion is often mapped in terms of new built-up land, but this alone does not reveal what has been lost or whether some areas experience disproportionately higher environmental impact. This project addresses that gap by focusing on the uneven environmental consequences of urban growth.\nIt therefore asks a key analytical and decision-oriented question: why does urban growth generate uneven environmental cost across London, and where might intervention be most needed?\nTo address this, the application combines spatial analysis with borough-level indicators to examine not only where high-cost growth occurs, but also how underlying land transformation processes contribute to these patterns.\nOpen the interactive application\nView the source code on GitHub"
+    "text": "This interactive application examines not only where urban growth has occurred in London, but also what environmental cost has accompanied that growth.\nUrban expansion is often mapped in terms of new built-up land, but this alone does not reveal what has been lost or whether some areas experience disproportionately higher environmental impact. This project addresses that gap by focusing on the uneven environmental consequences of urban growth.\nIt therefore asks a key analytical and decision-oriented question: why does urban growth generate uneven environmental cost across London, and where might intervention be most needed?\nTo address this, the application combines spatial analysis with borough-level indicators to examine not only where high-cost growth occurs, but also how underlying land transformation processes contribute to these patterns.\nOpen the interactive application\nView the source code on GitHub\n\n\n\n\n\n\nTipStart exploring\n\n\n\n\nUse the interactive map to explore spatial patterns of urban growth and environmental cost.\nCompare boroughs with the highest environmental cost using the ranking chart.\nExamine the land-replacement chart to understand what types of environments are being lost."
   },
   {
     "objectID": "index.html#where-has-london-grown-and-what-environmental-cost-came-with-that-growth",
     "href": "index.html#where-has-london-grown-and-what-environmental-cost-came-with-that-growth",
     "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "This interactive application examines not only where urban growth has occurred in London, but also what environmental cost has accompanied that growth.\nUrban expansion is often mapped in terms of new built-up land, but this alone does not reveal what has been lost or whether some areas experience disproportionately higher environmental impact. This project addresses that gap by focusing on the uneven environmental consequences of urban growth.\nIt therefore asks a key analytical and decision-oriented question: why does urban growth generate uneven environmental cost across London, and where might intervention be most needed?\nTo address this, the application combines spatial analysis with borough-level indicators to examine not only where high-cost growth occurs, but also how underlying land transformation processes contribute to these patterns.\nOpen the interactive application\nView the source code on GitHub"
-  },
-  {
-    "objectID": "index.html#start-exploring",
-    "href": "index.html#start-exploring",
-    "title": "London Growth Cost Explorer",
-    "section": "Start exploring",
-    "text": "Start exploring\nUse the interactive map to explore spatial patterns of urban growth and environmental cost.\nCompare boroughs with the highest environmental cost using the ranking chart.\nExamine the land-replacement chart to understand what types of environments are being lost."
+    "text": "This interactive application examines not only where urban growth has occurred in London, but also what environmental cost has accompanied that growth.\nUrban expansion is often mapped in terms of new built-up land, but this alone does not reveal what has been lost or whether some areas experience disproportionately higher environmental impact. This project addresses that gap by focusing on the uneven environmental consequences of urban growth.\nIt therefore asks a key analytical and decision-oriented question: why does urban growth generate uneven environmental cost across London, and where might intervention be most needed?\nTo address this, the application combines spatial analysis with borough-level indicators to examine not only where high-cost growth occurs, but also how underlying land transformation processes contribute to these patterns.\nOpen the interactive application\nView the source code on GitHub\n\n\n\n\n\n\nTipStart exploring\n\n\n\n\nUse the interactive map to explore spatial patterns of urban growth and environmental cost.\nCompare boroughs with the highest environmental cost using the ranking chart.\nExamine the land-replacement chart to understand what types of environments are being lost."
   },
   {
     "objectID": "index.html#project-summary",
     "href": "index.html#project-summary",
     "title": "London Growth Cost Explorer",
     "section": "Project Summary",
-    "text": "Project Summary\n\nProblem Statement\nUrban expansion maps typically show where development has occurred, but fail to explain what has been lost and where intervention is most needed.\nThis application addresses a decision-oriented question: where should planners prioritise intervention to mitigate the environmental cost of recent urban growth in London?\nBy linking land conversion processes with environmental indicators including green loss, heat penalty, NDVI reduction, and water-edge pressure, the application enables users to diagnose not only where growth has occurred, but why certain areas exhibit higher environmental cost.\n\n\nEnd User\nThe primary users are borough-level planning officers and environmental analysts responsible for evaluating development pressure and prioritising mitigation strategies.\nThe application also supports policy teams and community stakeholders by providing accessible spatial evidence on where urban growth has produced disproportionate environmental costs.\n\n\nData\nThese datasets are selected to represent different dimensions of environmental cost associated with urban growth.\nDynamic World is used to identify land cover transitions and newly built-up areas, providing the basis for understanding what types of land are being converted.\nSentinel-2 imagery represents vegetation condition through NDVI, capturing changes in green cover. Landsat 8/9 provides information on surface thermal conditions, reflecting heat-related impacts of urban expansion.\nJRC Global Surface Water represents stable water bodies and water-adjacent environments, allowing identification of areas potentially affected by development pressure.\nLondon borough boundaries are used to aggregate results and enable comparison across the city, supporting planning-relevant interpretation.\n\n\nMethodology\nUrban growth was identified by detecting transitions to built-up land using Dynamic World classifications. Only newly developed areas were retained for analysis.\nEnvironmental impacts were then calculated for these new built-up pixels. Green loss was derived from vegetation-to-built transitions, NDVI loss from changes in vegetation index, heat penalty from land surface temperature differences, and water-edge pressure from proximity to stable surface water.\nAll indicators were standardised and combined into a composite Growth Cost Index to enable comparison across boroughs.\nFinally, results were aggregated to borough level to support spatial comparison and interactive exploration.\n\n\nInterface\nThe interface combines an interactive map, control panel, and summary outputs to support a clear analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.\nThey can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts on the project webpage provide borough-level comparison, allowing users to move from spatial exploration in the map to broader analytical interpretation.\n\n\nHow to Use the Application\nA suggested workflow is:\n\nIdentify hotspots Use the map to locate areas of high growth cost.\nDiagnose causes Examine land replacement patterns to understand what types of land have been converted.\nCompare boroughs Use the ranking chart to assess relative environmental cost across London.\nEvaluate local context Compare borough-level indicators with the London average to identify disproportionate impacts."
+    "text": "Project Summary\n\nProblem Statement\nUrban expansion maps typically show where development has occurred, but fail to explain what has been lost and where intervention is most needed.\nThis application addresses a decision-oriented question: where should planners prioritise intervention to mitigate the environmental cost of recent urban growth in London?\nBy linking land conversion processes with environmental indicators including green loss, heat penalty, NDVI reduction, and water-edge pressure, the application enables users to diagnose not only where growth has occurred, but why certain areas exhibit higher environmental cost.\n\n\nEnd User\nThe primary users are borough-level planning officers and environmental analysts responsible for evaluating development pressure and prioritising mitigation strategies.\nThe application also supports policy teams and community stakeholders by providing accessible spatial evidence on where urban growth has produced disproportionate environmental costs.\n\n\nData\nThis project integrates multiple Earth Engine datasets to capture different dimensions of environmental change associated with urban growth.\nDynamic World provides land cover classification data, enabling identification of land cover types and their changes over time.\nSentinel-2 imagery represents vegetation condition through NDVI, allowing assessment of changes in green cover.\nLandsat 8/9 provides land surface temperature data, capturing thermal conditions associated with urban expansion.\nJRC Global Surface Water represents stable water bodies and water-adjacent environments, supporting analysis of development pressure near sensitive areas.\nLondon borough boundaries provide the spatial framework for aggregating results and enabling comparison across the city.\n\n\nMethodology\nUrban growth was identified by detecting transitions to built-up land using Dynamic World classifications, with analysis restricted to newly developed areas to isolate recent expansion processes.\nEnvironmental impacts were then calculated specifically for these new built-up pixels. Green loss was derived from vegetation-to-built transitions, NDVI loss from changes in vegetation index, heat penalty from differences in land surface temperature, and water-edge pressure from proximity to stable surface water.\nAll indicators were standardised to ensure comparability across different units and scales, and combined into a composite Growth Cost Index using equal weighting.\nFinally, results were aggregated to borough level, enabling comparison of where urban expansion has generated relatively higher environmental cost across London.\nThis workflow ensures that environmental cost is assessed in direct relation to new development rather than pre-existing urban conditions, providing a more policy-relevant and decision-oriented understanding of spatial patterns of urban growth impact. ### Interface\nThe interface combines an interactive map, control panel, and summary outputs to support a clear analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.\nThey can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts on the project webpage provide borough-level comparison, allowing users to move from spatial exploration in the map to broader analytical interpretation.\n\n\nHow to Use the Application\nA suggested workflow is:\n\nIdentify hotspots Use the map to locate areas of high growth cost.\nDiagnose causes Examine land replacement patterns to understand what types of land have been converted.\nCompare boroughs Use the ranking chart to assess relative environmental cost across London.\nEvaluate local context Compare borough-level indicators with the London average to identify disproportionate impacts."
   },
   {
     "objectID": "index.html#interactive-map",
@@ -130,7 +123,7 @@
     "href": "index.html#which-boroughs-show-the-highest-cost",
     "title": "London Growth Cost Explorer",
     "section": "Which Boroughs Show the Highest Cost?",
-    "text": "Which Boroughs Show the Highest Cost?\nHover over each bar to inspect exact borough-level values.\nHigher values indicate disproportionately higher environmental cost associated with urban growth, helping identify priority areas for potential intervention. These rankings support comparison of relative environmental cost across boroughs rather than absolute levels of development.\n\n\n                            \n                                            \n\n\n\nGrowth Cost Index across London\nThis map shows the spatial distribution of the Growth Cost Index across London boroughs.\nHigher values indicate areas where recent urban expansion is associated with greater environmental cost.\nThe pattern suggests that environmental impacts are unevenly distributed across the city. ::: {.callout-note appearance=“simple”}\nKey Insight\nEnvironmental costs of urban growth are not evenly distributed across London.\nSome boroughs experience significantly higher trade-offs between development and ecological impact, suggesting that a one-size-fits-all planning approach may be insufficient.\nTargeted interventions may be required in high-cost areas to better balance growth and environmental sustainability. :::"
+    "text": "Which Boroughs Show the Highest Cost?\nHover over each bar to inspect exact borough-level values.\nHigher values indicate disproportionately higher environmental cost associated with urban growth, helping identify priority areas for potential intervention. These rankings support comparison of relative environmental cost across boroughs rather than absolute levels of development.\n\n\n                            \n                                            \n\n\n\nGrowth Cost Index across London\nThis map shows the spatial distribution of the Growth Cost Index across London boroughs.\nHigher values indicate areas where recent urban expansion is associated with greater environmental cost.\nThe pattern suggests that environmental impacts are unevenly distributed across the city.\n\n\n\n\n\n\nKey Insight\nEnvironmental costs of urban growth are not evenly distributed across London.\nSome boroughs experience significantly higher trade-offs between development and ecological impact, suggesting that a one-size-fits-all planning approach may be insufficient.\nTargeted interventions may be required in high-cost areas to better balance growth and environmental sustainability."
   },
   {
     "objectID": "index.html#what-did-new-development-replace",
@@ -170,8 +163,78 @@
   {
     "objectID": "readme.html",
     "href": "readme.html",
-    "title": "",
+    "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "Use this repository to host a website for your CASA0025 final project by following these stpes:\n\nclone this repository\ninstall quarto\nedit the ‘index.qmd’ file with the contents of your project\nusing terminal, navigate to the project directory and run “quarto render”\npush the changes to your github repository\non github, navigate to Settings&gt;Pages&gt;Build and Deployment. Make sure that under “Source” it says “deploy from branch”. Under “Branch”, select “Main” in the first dropdown and “Docs” under the second drop down. Then press “Save”\n\nYour website should now be available under https://{your_username}.github.io/{your_repo_name}"
+    "text": "An interactive web application exploring where urban growth in London has occurred and what environmental cost has accompanied that growth.\n\n\n👉 https://your-username.github.io/your-repo-name/\n\n\n\n👉https://your-gee-app-link\n\n\n\n\nUrban expansion is often mapped simply as new built-up land, but this does not reveal what has been lost or whether certain areas experience disproportionately higher environmental impact.\nThis project goes beyond mapping growth by integrating multiple environmental indicators—including green loss, heat penalty, NDVI loss, and water-edge encroachment—into a composite Growth Cost Index. The application enables users to identify where urban growth is most environmentally costly and explore why these patterns occur across London boroughs.\n\n\n\n\n\nBorough-level Growth Cost Index ranking\nIdentification of land types replaced by new built-up areas\nMulti-dimensional comparison of environmental indicators\nInteractive Earth Engine map interface\nLinked charts and narrative explanations for interpretation\n\n\n\n\n\nThe analysis combines remote sensing and spatial aggregation:\n\nDetect new built-up areas using land cover datasets\n\nCalculate environmental indicators (NDVI loss, heat penalty, water-edge encroachment)\n\nAggregate results to borough level\n\nConstruct a composite Growth Cost Index\n\nVisualise results through an interactive application and supporting charts\n\n\n\n\n\n├── index.qmd # Quarto webpage source ├── docs/ # Rendered site (GitHub Pages) ├── src/ # Earth Engine scripts (A–F workflow) ├── data/ # Borough-level datasets ├── styles.css # Page styling\n\n\n\n\n\n\n\nA: Data acquisition and standardisation across multi-source datasets\n\nB: Image preprocessing and ensuring spatial-temporal consistency\n\n\n\n\n\nC: Land-use change detection and built-up area identification\n\nD: Environmental indicator calculation and Growth Cost Index construction\n\n\n\n\n\nE: GEE interface design and interactive map development\n\nF: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation\n\n\n\n\n\n\nThis project is built using Quarto and deployed via GitHub Pages from the /docs folder.\nTo rebuild locally:\n\n\n\n\n\nDynamic World (Google Earth Engine)\nSentinel-2\nLandsat 8/9\nJRC Global Surface Water\nLondon Borough Boundaries\n\n\n\n\n\nThis project was developed as part of CASA0025 (Spatial Data Science) at UCL."
+  },
+  {
+    "objectID": "readme.html#live-website",
+    "href": "readme.html#live-website",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "👉 https://your-username.github.io/your-repo-name/"
+  },
+  {
+    "objectID": "readme.html#interactive-gee-application",
+    "href": "readme.html#interactive-gee-application",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "👉https://your-gee-app-link"
+  },
+  {
+    "objectID": "readme.html#project-overview",
+    "href": "readme.html#project-overview",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "Urban expansion is often mapped simply as new built-up land, but this does not reveal what has been lost or whether certain areas experience disproportionately higher environmental impact.\nThis project goes beyond mapping growth by integrating multiple environmental indicators—including green loss, heat penalty, NDVI loss, and water-edge encroachment—into a composite Growth Cost Index. The application enables users to identify where urban growth is most environmentally costly and explore why these patterns occur across London boroughs."
+  },
+  {
+    "objectID": "readme.html#key-features",
+    "href": "readme.html#key-features",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "Borough-level Growth Cost Index ranking\nIdentification of land types replaced by new built-up areas\nMulti-dimensional comparison of environmental indicators\nInteractive Earth Engine map interface\nLinked charts and narrative explanations for interpretation"
+  },
+  {
+    "objectID": "readme.html#method-overview",
+    "href": "readme.html#method-overview",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "The analysis combines remote sensing and spatial aggregation:\n\nDetect new built-up areas using land cover datasets\n\nCalculate environmental indicators (NDVI loss, heat penalty, water-edge encroachment)\n\nAggregate results to borough level\n\nConstruct a composite Growth Cost Index\n\nVisualise results through an interactive application and supporting charts"
+  },
+  {
+    "objectID": "readme.html#repository-structure",
+    "href": "readme.html#repository-structure",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "├── index.qmd # Quarto webpage source ├── docs/ # Rendered site (GitHub Pages) ├── src/ # Earth Engine scripts (A–F workflow) ├── data/ # Borough-level datasets ├── styles.css # Page styling"
+  },
+  {
+    "objectID": "readme.html#team-contributions",
+    "href": "readme.html#team-contributions",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "A: Data acquisition and standardisation across multi-source datasets\n\nB: Image preprocessing and ensuring spatial-temporal consistency\n\n\n\n\n\nC: Land-use change detection and built-up area identification\n\nD: Environmental indicator calculation and Growth Cost Index construction\n\n\n\n\n\nE: GEE interface design and interactive map development\n\nF: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation"
+  },
+  {
+    "objectID": "readme.html#deployment",
+    "href": "readme.html#deployment",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "This project is built using Quarto and deployed via GitHub Pages from the /docs folder.\nTo rebuild locally:"
+  },
+  {
+    "objectID": "readme.html#data-sources",
+    "href": "readme.html#data-sources",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "Dynamic World (Google Earth Engine)\nSentinel-2\nLandsat 8/9\nJRC Global Surface Water\nLondon Borough Boundaries"
+  },
+  {
+    "objectID": "readme.html#notes",
+    "href": "readme.html#notes",
+    "title": "London Growth Cost Explorer",
+    "section": "",
+    "text": "This project was developed as part of CASA0025 (Spatial Data Science) at UCL."
   }
 ]
