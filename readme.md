@@ -41,15 +41,15 @@ The analysis combines remote sensing and spatial aggregation:
 
 ---
 
-## 🗂️ Repository Structure
+## 📁 Repository Structure
 
-
-
+```
 ├── index.qmd              # Quarto webpage source
 ├── docs/                  # Rendered site (GitHub Pages)
 ├── src/                   # Earth Engine scripts (A–F workflow)
 ├── data/                  # Borough-level datasets
 ├── styles.css             # Page styling
+```
 
 
 
