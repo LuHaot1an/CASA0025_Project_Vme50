@@ -165,7 +165,7 @@
     "href": "index.html#team-contributions",
     "title": "London Growth Cost Explorer",
     "section": "Team Contributions",
-    "text": "Team Contributions\n\nA: Data preprocessing and land-cover preparation\nB: Imagery processing and vegetation indicators\nC: Land transition analysis and supporting datasets\nD: Growth cost index construction and borough aggregation\nE: Earth Engine application interface and interaction design\nF: Chart design, Quarto page development, front-end integration, and narrative framing"
+    "text": "Team Contributions\n\nPreprocessing\n\nA: Data acquisition and standardisation, including integrating multi-source datasets (Dynamic World, Sentinel-2, Landsat, JRC Water) and defining a consistent study extent and temporal framework for London\nB: Image preprocessing and preparation, including cloud removal, temporal filtering, and ensuring spatial and temporal consistency across datasets for analysis readiness\n\n\n\n\nAnalysis\n\nC: Land-use change detection and built-up area identification, including deriving land transition patterns and quantifying what types of land were replaced by urban growth\nD: Environmental indicator construction, including calculating NDVI loss, heat penalty, and water-edge encroachment, and developing the composite Growth Cost Index and borough-level aggregation\n\n\n\n\nVisualisation\n\nE: GEE interface design and interaction development, including map layer control, borough selection, and interactive querying to support exploratory analysis\nF: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation"
   },
   {
     "objectID": "index.html#limitations",
