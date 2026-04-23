@@ -109,7 +109,7 @@
     "href": "index.html#how-the-cost-index-is-calculated",
     "title": "London Growth Cost Explorer",
     "section": "How the Cost Index is Calculated",
-    "text": "How the Cost Index is Calculated\nThe environmental growth cost index combines multiple indicators derived from Google Earth Engine:\n\nvegetation loss and NDVI decline\nheat exposure associated with new built-up land\npressure on water-adjacent land\nland-cover transitions into built surfaces\n\nEach indicator is normalised and aggregated to produce a composite score at borough level. This allows comparison across boroughs while capturing multiple dimensions of environmental impact.\nThis index is intended as a comparative diagnostic measure rather than a precise absolute measure of environmental damage.\nThe charts below reflect the same borough-level outputs used in the interactive application and help summarise the main patterns visible in the map."
+    "text": "How the Cost Index is Calculated\nThe environmental growth cost index combines multiple indicators derived from Google Earth Engine:\n\nvegetation loss and NDVI decline\nheat exposure associated with new built-up land\npressure on water-adjacent land\nland-cover transitions into built surfaces\n\nEach indicator is normalised and aggregated to produce a composite score at borough level. This allows comparison across boroughs while capturing multiple dimensions of environmental impact.\n\n\n\nThis index is intended as a comparative diagnostic measure rather than a precise absolute measure of environmental damage.\nThe charts below reflect the same borough-level outputs used in the interactive application and help summarise the main patterns visible in the map."
   },
   {
     "objectID": "index.html#how-it-works",
@@ -151,7 +151,7 @@
     "href": "index.html#behind-the-application",
     "title": "London Growth Cost Explorer",
     "section": "Behind the Application",
-    "text": "Behind the Application\nThis application is designed for planners, local authorities, and environmental teams who need accessible and interpretable spatial evidence on where recent urban growth may be associated with higher environmental cost.\nIt integrates Google Earth Engine datasets, including land-cover transitions, NDVI, land surface temperature, and water-related indicators, to enable borough-level comparison.\nThe design prioritises simplicity and interpretability, allowing users to quickly identify high-cost growth areas and explore underlying environmental patterns without requiring specialist GIS expertise. ## Team Contributions\n\nPreprocessing\n\nA: Data acquisition and standardisation, including integrating multi-source datasets (Dynamic World, Sentinel-2, Landsat, JRC Water) and defining a consistent study extent and temporal framework for London\nB: Image preprocessing and preparation, including cloud removal, temporal filtering, and ensuring spatial and temporal consistency across datasets for analysis readiness\n\n\n\n\nAnalysis\n\nC: Land-use change detection and built-up area identification, including deriving land transition patterns and quantifying what types of land were replaced by urban growth\nD: Environmental indicator construction, including calculating NDVI loss, heat penalty, and water-edge encroachment, and developing the composite Growth Cost Index and borough-level aggregation\n\n\n\n\nVisualisation\n\nE: GEE interface design and interaction development, including map layer control, borough selection, and interactive querying to support exploratory analysis\nF: Chart development and front-end integration, including linking borough-level data to interactive charts, embedding visual outputs into the Quarto interface, and ensuring coordinated interaction between charts and the Earth Engine application"
+    "text": "Behind the Application\nThis application is designed for planners, local authorities, and environmental teams who need accessible and interpretable spatial evidence on where recent urban growth may be associated with higher environmental cost.\nIt integrates Google Earth Engine datasets, including land-cover transitions, NDVI, land surface temperature, and water-related indicators, to enable borough-level comparison.\nThe design prioritises simplicity and interpretability, allowing users to quickly identify high-cost growth areas and explore underlying environmental patterns without requiring specialist GIS expertise."
   },
   {
     "objectID": "index.html#limitations",
@@ -172,21 +172,21 @@
     "href": "readme.html",
     "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "An interactive web application exploring where urban growth in London has occurred and what environmental cost has accompanied that growth.\n\n\n👉 https://your-username.github.io/your-repo-name/\n\n\n\n👉https://your-gee-app-link\n\n\n\n\nUrban expansion is often mapped simply as new built-up land, but this does not reveal what has been lost or whether certain areas experience disproportionately higher environmental impact.\nThis project goes beyond mapping growth by integrating multiple environmental indicators—including green loss, heat penalty, NDVI loss, and water-edge encroachment—into a composite Growth Cost Index. The application enables users to identify where urban growth is most environmentally costly and explore why these patterns occur across London boroughs.\n\n\n\n\n\nBorough-level Growth Cost Index ranking\nIdentification of land types replaced by new built-up areas\nMulti-dimensional comparison of environmental indicators\nInteractive Earth Engine map interface\nLinked charts and narrative explanations for interpretation\n\n\n\n\n\nThe analysis combines remote sensing and spatial aggregation:\n\nDetect new built-up areas using land cover datasets\n\nCalculate environmental indicators (NDVI loss, heat penalty, water-edge encroachment)\n\nAggregate results to borough level\n\nConstruct a composite Growth Cost Index\n\nVisualise results through an interactive application and supporting charts\n\n\n\n\n\n├── index.qmd # Quarto webpage source ├── docs/ # Rendered site (GitHub Pages) ├── src/ # Earth Engine scripts (A–F workflow) ├── data/ # Borough-level datasets ├── styles.css # Page styling\n\n\n\n\n\n\n\nA: Data acquisition and standardisation across multi-source datasets\n\nB: Image preprocessing and ensuring spatial-temporal consistency\n\n\n\n\n\nC: Land-use change detection and built-up area identification\n\nD: Environmental indicator calculation and Growth Cost Index construction\n\n\n\n\n\nE: GEE interface design and interactive map development\n\nF: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation\n\n\n\n\n\n\nThis project is built using Quarto and deployed via GitHub Pages from the /docs folder.\nTo rebuild locally:\n\n\n\n\n\nDynamic World (Google Earth Engine)\nSentinel-2\nLandsat 8/9\nJRC Global Surface Water\nLondon Borough Boundaries\n\n\n\n\n\nThis project was developed as part of CASA0025 (Spatial Data Science) at UCL."
+    "text": "An interactive web application exploring where urban growth in London has occurred and what environmental cost has accompanied that growth.\n\n\n👉 https://LuHaot1an.github.io/CASA0025_Project_Vme50\n\n\n\nhttps://extreme-flame-493900-h7.projects.earthengine.app/view/london-growth-cost-explorer\n\n\n\n\nUrban expansion is often mapped simply as new built-up land, but this does not reveal what has been lost or whether certain areas experience disproportionately higher environmental impact.\nThis project goes beyond mapping growth by integrating multiple environmental indicators—including green loss, heat penalty, NDVI loss, and water-edge encroachment—into a composite Growth Cost Index. The application enables users to identify where urban growth is most environmentally costly and explore why these patterns occur across London boroughs.\n\n\n\n\n\nBorough-level Growth Cost Index ranking\nIdentification of land types replaced by new built-up areas\nMulti-dimensional comparison of environmental indicators\nInteractive Earth Engine map interface\nLinked charts and narrative explanations for interpretation\n\n\n\n\n\nThe analysis combines remote sensing and spatial aggregation:\n\nDetect new built-up areas using land cover datasets\n\nCalculate environmental indicators (NDVI loss, heat penalty, water-edge encroachment)\n\nAggregate results to borough level\n\nConstruct a composite Growth Cost Index\n\nVisualise results through an interactive application and supporting charts\n\n\n\n\n\n├── index.qmd              # Quarto webpage source\n├── docs/                  # Rendered site (GitHub Pages)\n├── src/                   # Earth Engine scripts (A–F workflow)\n├── data/                  # Borough-level datasets\n├── styles.css             # Page styling\n\n\n\n\n\n\n\nA: Data acquisition and standardisation across multi-source datasets\n\nB: Image preprocessing and ensuring spatial-temporal consistency\n\n\n\n\n\nC: Land-use change detection and built-up area identification\n\nD: Environmental indicator calculation and Growth Cost Index construction\n\n\n\n\n\nE: GEE interface design and interactive map development\n\nF: Chart design, Quarto page development, front-end integration, and linking charts with the Earth Engine application for coordinated interpretation\n\n\n\n\n\n\nThis project is built using Quarto and deployed via GitHub Pages from the /docs folder.\nTo rebuild locally:\n\n\n\n\n\nDynamic World (Google Earth Engine)\nSentinel-2\nLandsat 8/9\nJRC Global Surface Water\nLondon Borough Boundaries\n\n\n\n\n\nThis project was developed as part of CASA0025 (Spatial Data Science) at UCL."
   },
   {
     "objectID": "readme.html#live-website",
     "href": "readme.html#live-website",
     "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "👉 https://your-username.github.io/your-repo-name/"
+    "text": "👉 https://LuHaot1an.github.io/CASA0025_Project_Vme50"
   },
   {
     "objectID": "readme.html#interactive-gee-application",
     "href": "readme.html#interactive-gee-application",
     "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "👉https://your-gee-app-link"
+    "text": "https://extreme-flame-493900-h7.projects.earthengine.app/view/london-growth-cost-explorer"
   },
   {
     "objectID": "readme.html#project-overview",
@@ -214,7 +214,7 @@
     "href": "readme.html#repository-structure",
     "title": "London Growth Cost Explorer",
     "section": "",
-    "text": "├── index.qmd # Quarto webpage source ├── docs/ # Rendered site (GitHub Pages) ├── src/ # Earth Engine scripts (A–F workflow) ├── data/ # Borough-level datasets ├── styles.css # Page styling"
+    "text": "├── index.qmd              # Quarto webpage source\n├── docs/                  # Rendered site (GitHub Pages)\n├── src/                   # Earth Engine scripts (A–F workflow)\n├── data/                  # Borough-level datasets\n├── styles.css             # Page styling"
   },
   {
     "objectID": "readme.html#team-contributions",
@@ -243,5 +243,12 @@
     "title": "London Growth Cost Explorer",
     "section": "",
     "text": "This project was developed as part of CASA0025 (Spatial Data Science) at UCL."
+  },
+  {
+    "objectID": "index.html#team-contributions",
+    "href": "index.html#team-contributions",
+    "title": "London Growth Cost Explorer",
+    "section": "Team Contributions",
+    "text": "Team Contributions\n\nPreprocessing\n\nA: Data acquisition and standardisation, including integrating multi-source datasets (Dynamic World, Sentinel-2, Landsat, JRC Water) and defining a consistent study extent and temporal framework for London\nB: Image preprocessing and preparation, including cloud removal, temporal filtering, and ensuring spatial and temporal consistency across datasets for analysis readiness\n\n\n\n\nAnalysis\n\nC: Land-use change detection and built-up area identification, including deriving land transition patterns and quantifying what types of land were replaced by urban growth\nD: Environmental indicator construction, including calculating NDVI loss, heat penalty, and water-edge encroachment, and developing the composite Growth Cost Index and borough-level aggregation\n\n\n\n\nVisualisation\n\nE: GEE interface design and interaction development, including map layer control, borough selection, and interactive querying to support exploratory analysis\nF: Chart development and front-end integration, including linking borough-level data to interactive charts, embedding visual outputs into the Quarto interface, and ensuring coordinated interaction between charts and the Earth Engine application"
   }
 ]

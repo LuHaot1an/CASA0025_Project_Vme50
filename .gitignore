@@ -1,17 +1,18 @@
+# Python
 .venv/
 __pycache__/
-.DS_Store
 *.pyc
-.quarto/
-_site/
+
+# System
+.DS_Store
+
+# Editor
 .Rhistory
 .vscode/
-docs/index_files/
-docs/site_libs/
-index.quarto_ipynb*
 
-
-.DS_Store
-
+# Quarto cache / intermediate files (do NOT ignore docs/ since it is the site output dir)
+.quarto/
 /.quarto/
+_site/
 **/*.quarto_ipynb
+index.quarto_ipynb*

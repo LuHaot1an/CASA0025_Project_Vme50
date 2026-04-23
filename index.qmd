@@ -131,6 +131,10 @@ The environmental growth cost index combines multiple indicators derived from Go
 
 Each indicator is normalised and aggregated to produce a composite score at borough level. This allows comparison across boroughs while capturing multiple dimensions of environmental impact.
 
+::: {style="text-align: center;"}
+<img src="images/env_cost_index.png" style="border: 1.5px dashed black; padding: 6px; display: inline-block; max-width: 100%;" />
+:::
+
 This index is intended as a comparative diagnostic measure rather than a precise absolute measure of environmental damage.
 
 The charts below reflect the same borough-level outputs used in the interactive application and help summarise the main patterns visible in the map.
@@ -474,6 +478,7 @@ This application is designed for planners, local authorities, and environmental 
 It integrates Google Earth Engine datasets, including land-cover transitions, NDVI, land surface temperature, and water-related indicators, to enable borough-level comparison.
 
 The design prioritises simplicity and interpretability, allowing users to quickly identify high-cost growth areas and explore underlying environmental patterns without requiring specialist GIS expertise.
+
 ## Team Contributions
 
 ### Preprocessing
