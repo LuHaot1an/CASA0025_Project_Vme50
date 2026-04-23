@@ -20,7 +20,50 @@ from IPython.display import HTML, display
 pio.renderers.default = "notebook_connected"
 ```
 
-## Where has London grown, and what environmental cost came with that growth?
+```{=html}
+<script>
+  // Always start at the top on reload, unless the URL has an anchor (e.g. #map).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.addEventListener('load', function () {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  });
+
+  // LGCE brand and the Overview link should go to the very top of the page,
+  // above the H1 title, bypassing the scroll-padding-top offset.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-scroll-top]');
+    if (!el) return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.replaceState(null, '', window.location.pathname);
+  });
+</script>
+
+<nav class="site-nav" aria-label="Section navigation">
+  <div class="site-nav-inner">
+    <a class="site-nav-brand" href="#" data-scroll-top>LGCE</a>
+    <div class="site-nav-links">
+      <a href="#" data-scroll-top>Overview</a>
+      <a href="#summary">Summary</a>
+      <a href="#how-to-use">Guide</a>
+      <a href="#map">Map</a>
+      <a href="#cost-index">Cost Index</a>
+      <a href="#how-it-works">How it Works</a>
+      <a href="#rankings">Boroughs</a>
+      <a href="#insights">Insights</a>
+      <a href="#team">Team</a>
+      <a href="#limitations">Limitations</a>
+      <a href="#references">References</a>
+    </div>
+  </div>
+</nav>
+```
+
+## Where has London grown, and what environmental cost came with that growth? {#overview}
 
 This interactive application examines not only where urban growth has occurred in London, but also what environmental cost has accompanied that growth.
 
@@ -43,7 +86,7 @@ To address this, the application combines spatial analysis with borough-level in
 - Examine the land-replacement chart to understand what types of environments are being lost.
 :::
 
-## Project Summary
+## Project Summary {#summary}
 
 ### Problem Statement
 
@@ -94,7 +137,7 @@ The interface combines an interactive map, control panel, and summary outputs to
 
 They can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts on the project webpage provide borough-level comparison, allowing users to move from spatial exploration in the map to broader analytical interpretation.
 
-## How to Use This Application
+## How to Use This Application {#how-to-use}
 
 Start with the interactive map to explore where urban growth has taken place and how environmental cost varies across London.
 
@@ -102,7 +145,7 @@ Then use the borough ranking chart to identify which areas show the highest rela
 
 Together, these components help users move from spatial observation to borough-level comparison and comparative interpretation.
 
-## Interactive Map
+## Interactive Map {#map}
 
 Explore spatial patterns of urban growth and environmental cost across London.
 
@@ -120,7 +163,7 @@ If the map does not load, [click here to open the interactive map](https://extre
 ></iframe>
 
 
-## How the Cost Index is Calculated
+## How the Cost Index is Calculated {#cost-index}
 
 The environmental growth cost index combines multiple indicators derived from Google Earth Engine:
 
@@ -139,7 +182,7 @@ This index is intended as a comparative diagnostic measure rather than a precise
 
 The charts below reflect the same borough-level outputs used in the interactive application and help summarise the main patterns visible in the map.
 
-## How it Works
+## How it Works {#how-it-works}
 
 The application is built in Google Earth Engine (GEE) and combines pre-processed environmental indicators with an interactive user interface.
 
@@ -167,7 +210,7 @@ The chart module then provides three linked outputs: a London-wide ranking chart
 
 
 
-## Which Boroughs Show the Highest Cost?
+## Which Boroughs Show the Highest Cost? {#rankings}
 
 Hover over each bar to inspect exact borough-level values.
 
@@ -242,7 +285,7 @@ Some boroughs experience significantly higher trade-offs between development and
 Targeted interventions may be required in high-cost areas to better balance growth and environmental sustainability.
 :::
 
-## What Did New Development Replace?
+## What Did New Development Replace? {#land-use}
 
 This chart shows which types of land are most frequently replaced by new built-up areas, highlighting the environmental trade-offs associated with urban expansion.
 
@@ -346,7 +389,7 @@ While some areas are primarily affected by green loss, others show stronger heat
 
 This indicates that environmental impacts of urban growth vary in structure, not just in magnitude.
 
-## How Do Boroughs Compare to the London Average?
+## How Do Boroughs Compare to the London Average? {#compare}
 
 This chart compares borough-level values with the London average across key environmental indicators.
 
@@ -449,7 +492,7 @@ A large proportion of new built-up land replaces vegetated surfaces, indicating 
 
 This reinforces the interpretation that recent growth is closely tied to ecological transformation.
 
-## What the Results Suggest
+## What the Results Suggest {#insights}
 
 Together, the three analytical components provide a connected interpretation of environmental cost. The ranking identifies where growth is most costly, the land-replacement analysis explains what types of land contribute to this cost, and the borough comparison reveals whether these patterns are consistent across multiple environmental dimensions.
 
@@ -471,7 +514,7 @@ These costs are unevenly distributed across London, indicating that some borough
 
 This provides evidence to support more targeted planning decisions, helping identify where mitigation, protection, or further investigation may be most needed.
 
-## Behind the Application
+## Behind the Application {#behind}
 
 This application is designed for planners, local authorities, and environmental teams who need accessible and interpretable spatial evidence on where recent urban growth may be associated with higher environmental cost.
 
@@ -479,7 +522,7 @@ It integrates Google Earth Engine datasets, including land-cover transitions, ND
 
 The design prioritises simplicity and interpretability, allowing users to quickly identify high-cost growth areas and explore underlying environmental patterns without requiring specialist GIS expertise.
 
-## Team Contributions
+## Team Contributions {#team}
 
 ### Preprocessing
 
@@ -503,7 +546,7 @@ The design prioritises simplicity and interpretability, allowing users to quickl
 
 * **F**: Chart development and front-end integration, including linking borough-level data to interactive charts, embedding visual outputs into the Quarto interface, and ensuring coordinated interaction between charts and the Earth Engine application
 
-## Limitations
+## Limitations {#limitations}
 
 This analysis relies on satellite-derived indicators, which may not fully capture fine-scale or short-term urban changes. Uncertainty may arise from land-cover classification accuracy, temporal resolution, and the aggregation of multiple indicators into a composite index, all of which can influence the detection of land transitions.
 
@@ -515,7 +558,7 @@ Furthermore, the analysis identifies spatial associations rather than causal rel
 
 The index should therefore be interpreted as a comparative diagnostic tool rather than an absolute measure of environmental impact. Future work could explore sensitivity to indicator selection, weighting schemes, and spatial scale to better understand how different dimensions contribute to overall environmental cost.
 
-## References
+## References {#references}
 
 Seto, K. C., Güneralp, B., & Hutyra, L. R. (2012). Global forecasts of urban expansion to 2030 and direct impacts on biodiversity and carbon pools. *Proceedings of the National Academy of Sciences*, 109(40), 16083–16088.
 

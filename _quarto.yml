@@ -2,6 +2,10 @@ project:
   type: website
   output-dir: docs
 
+website:
+  title: "London Growth Cost Explorer"
+  favicon: logo.png
+
 book:
   title: "CASA0025 Final Assessment"
   author: "Group Name"
