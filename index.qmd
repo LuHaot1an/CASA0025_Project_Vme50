@@ -76,36 +76,31 @@ London borough boundaries provide the spatial framework for aggregating results 
 
 ### Methodology
 
-Urban growth was identified by detecting transitions to built-up land using Dynamic World classifications, with analysis restricted to newly developed areas to isolate recent expansion processes.
+Urban growth was identified by detecting transitions to built-up land using Dynamic World classifications, with analysis restricted to newly developed areas to isolate recent expansion processes. This approach is consistent with research showing that urban expansion is a major driver of land-use change and environmental transformation (Seto et al., 2012).
 
-Environmental impacts were then calculated specifically for these new built-up pixels. Green loss was derived from vegetation-to-built transitions, NDVI loss from changes in vegetation index, heat penalty from differences in land surface temperature, and water-edge pressure from proximity to stable surface water.
+Environmental impacts were then calculated specifically for these new built-up pixels, reflecting the understanding that the consequences of urbanisation depend not only on the extent of development but also on the type of land being transformed (Foley et al., 2005).
 
-All indicators were standardised to ensure comparability across different units and scales, and combined into a composite Growth Cost Index using equal weighting.
+Green loss was derived from vegetation-to-built transitions, in line with studies highlighting the importance of urban green infrastructure for environmental quality and ecological resilience (Wolch et al., 2014; Haase et al., 2014). Heat penalty was estimated from differences in land surface temperature, capturing the urban heat island effect associated with built-up expansion (Oke, 1982; Zhou et al., 2014).
 
-Finally, results were aggregated to borough level, enabling comparison of where urban expansion has generated relatively higher environmental cost across London.
+These indicators were combined into a composite environmental cost index and aggregated at the borough level to support spatial comparison across London. This aggregation enables the identification of broader spatial patterns while maintaining interpretability for non-expert users.
 
-This workflow ensures that environmental cost is assessed in direct relation to new development rather than pre-existing urban conditions, providing a more policy-relevant and decision-oriented understanding of spatial patterns of urban growth impact.
+However, the analysis may be influenced by classification uncertainty and the spatial resolution of remote sensing data, which can affect the detection of fine-scale land transitions. In addition, the environmental cost index simplifies complex ecological processes into a limited set of indicators, and therefore may not fully capture all dimensions of environmental impact.
+
+The use of cloud-based geospatial platforms such as Google Earth Engine enables this large-scale analysis by integrating multiple datasets and performing computation at scale.
+
 ### Interface
 
 The interface combines an interactive map, control panel, and summary outputs to support a clear analytical workflow. Users can switch between layers showing new built-up areas, land replacement types, NDVI loss, heat penalty, and composite growth cost.
 
 They can select a borough from a dropdown menu or click directly on the map to view local summaries. Supporting charts on the project webpage provide borough-level comparison, allowing users to move from spatial exploration in the map to broader analytical interpretation.
 
-### How to Use the Application
+## How to Use This Application
 
-A suggested workflow is:
+Start with the interactive map to explore where urban growth has taken place and how environmental cost varies across London.
 
-1. **Identify hotspots**
-   Use the map to locate areas of high growth cost.
+Then use the borough ranking chart to identify which areas show the highest relative environmental cost. The land-replacement chart helps explain what types of land are being converted into built-up surfaces, while the borough-versus-London chart shows whether selected boroughs sit above or below the city-wide average across key indicators.
 
-2. **Diagnose causes**
-   Examine land replacement patterns to understand what types of land have been converted.
-
-3. **Compare boroughs**
-   Use the ranking chart to assess relative environmental cost across London.
-
-4. **Evaluate local context**
-   Compare borough-level indicators with the London average to identify disproportionate impacts.
+Together, these components help users move from spatial observation to borough-level comparison and comparative interpretation.
 
 ## Interactive Map
 
@@ -124,13 +119,6 @@ If the map does not load, [click here to open the interactive map](https://extre
   style="border:1px solid #d9d9d9; border-radius:10px;"
 ></iframe>
 
-## How to Use This Application
-
-Start with the interactive map to explore where urban growth has taken place and how environmental cost varies across London.
-
-Then use the borough ranking chart to identify which areas show the highest relative environmental cost. The land-replacement chart helps explain what types of land are being converted into built-up surfaces, while the borough-versus-London chart shows whether selected boroughs sit above or below the city-wide average across key indicators.
-
-Together, these components help users move from spatial observation to borough-level comparison and comparative interpretation.
 
 ## How the Cost Index is Calculated
 
@@ -243,7 +231,7 @@ The pattern suggests that environmental impacts are unevenly distributed across 
 ::: {.callout-note appearance="simple"}
 **Key Insight**
 
-Environmental costs of urban growth are not evenly distributed across London.
+Environmental costs of urban growth are not evenly distributed across London, suggesting spatially uneven trade-offs between development and environmental impact.
 
 Some boroughs experience significantly higher trade-offs between development and ecological impact, suggesting that a one-size-fits-all planning approach may be insufficient.
 
@@ -448,7 +436,6 @@ fig3.show(config={
     ]
 })
 ```
-This figure illustrates land cover transitions associated with new development.
 
 ### Land Cover Transitions
 
@@ -460,17 +447,15 @@ This reinforces the interpretation that recent growth is closely tied to ecologi
 
 ## What the Results Suggest
 
-Together, the three analytical components provide a connected interpretation of environmental cost.
+Together, the three analytical components provide a connected interpretation of environmental cost. The ranking identifies where growth is most costly, the land-replacement analysis explains what types of land contribute to this cost, and the borough comparison reveals whether these patterns are consistent across multiple environmental dimensions.
 
-The ranking identifies where growth is most costly, the land-replacement analysis explains what types of land contribute to this cost, and the borough comparison reveals whether these patterns are consistent across multiple environmental dimensions.
+Environmental cost is not evenly distributed across London, reflecting broader findings that the impacts of urban expansion are spatially uneven and shaped by local land-use context (Seto et al., 2012). This uneven distribution may also reflect patterns of environmental inequality observed in urban systems, where some areas experience disproportionate environmental burdens (Boone et al., 2009).
 
-Environmental cost is not evenly distributed across London.
+The ranking results show that several outer boroughs consistently exhibit higher growth cost values. The land-replacement analysis suggests that this pattern is closely linked to the conversion of green and ecologically sensitive land into built-up areas, reinforcing evidence that urban expansion often occurs at the expense of green infrastructure (Wolch et al., 2014). This transformation may also imply a reduction in ecosystem services that are important for maintaining urban environmental quality (Haase et al., 2014).
 
-The ranking results show that several outer boroughs consistently exhibit higher growth cost values. The land-replacement analysis suggests that this pattern is closely linked to the conversion of green and ecologically sensitive land into built-up areas.
+Further comparison with the London average indicates that these boroughs often exceed city-wide values across multiple indicators, including vegetation loss and heat exposure. This suggests that high environmental cost reflects a combination of interacting pressures associated with urban expansion, highlighting the complexity of urban systems (Batty, 2013). Increased heat exposure, for example, is consistent with the urban heat island effect identified in both foundational and recent studies (Oke, 1982; Zhou et al., 2014).
 
-Further comparison with the London average indicates that these boroughs often exceed city-wide values across multiple indicators, including vegetation loss and heat exposure. This suggests that high environmental cost is not driven by a single factor, but reflects a combination of pressures associated with urban expansion.
-
-Together, these findings demonstrate that the environmental impact of urban growth depends not only on how much development occurs, but also on what types of land are being transformed and where this transformation takes place. This reinforces the importance of considering not only the quantity of growth, but also its location and underlying land transformation processes.
+These findings highlight the need for more spatially targeted planning approaches to better balance urban development and environmental sustainability. However, these patterns should be interpreted with caution, as they represent spatial associations rather than direct causal relationships, and may be influenced by underlying data limitations.
 
 ### Why This Matters
 
@@ -515,13 +500,30 @@ The design prioritises simplicity and interpretability, allowing users to quickl
 
 ## Limitations
 
-This analysis relies on satellite-derived indicators which may not fully capture fine-scale or short-term urban changes. Uncertainty may arise from land-cover classification, temporal resolution, and the aggregation of multiple indicators into a composite index.
+This analysis relies on satellite-derived indicators, which may not fully capture fine-scale or short-term urban changes. Uncertainty may arise from land-cover classification accuracy, temporal resolution, and the aggregation of multiple indicators into a composite index, all of which can influence the detection of land transitions.
 
-The growth cost index is based on equal weighting of indicators, which provides a transparent baseline but may not reflect the relative importance of different environmental processes. Alternative weighting schemes could lead to different borough rankings.
+The growth cost index is based on equal weighting of indicators, providing a transparent and consistent baseline. However, this assumption may not reflect the relative importance of different environmental processes, and alternative weighting schemes could lead to different borough rankings.
 
-In addition, borough-level aggregation may mask local variation within boroughs, meaning that intra-borough differences are not explicitly represented. Future work could explore sensitivity to indicator choice and weighting to better understand how different dimensions contribute to overall environmental cost.
+In addition, borough-level aggregation may mask local variation within boroughs, meaning that intra-borough differences are not explicitly represented. As a result, areas of high environmental cost may be generalised at the borough scale, potentially obscuring more localised patterns.
 
-The index should therefore be interpreted as a comparative diagnostic tool rather than an absolute measure of environmental impact.
+Furthermore, the analysis identifies spatial associations rather than causal relationships, and observed patterns may also be influenced by unobserved socio-environmental factors.
 
+The index should therefore be interpreted as a comparative diagnostic tool rather than an absolute measure of environmental impact. Future work could explore sensitivity to indicator selection, weighting schemes, and spatial scale to better understand how different dimensions contribute to overall environmental cost.
 
+## References
 
+Seto, K. C., Güneralp, B., & Hutyra, L. R. (2012). Global forecasts of urban expansion to 2030 and direct impacts on biodiversity and carbon pools. *Proceedings of the National Academy of Sciences*, 109(40), 16083–16088.
+
+Foley, J. A. et al. (2005). Global consequences of land use. *Science*, 309(5734), 570–574.
+
+Wolch, J. R., Byrne, J., & Newell, J. P. (2014). Urban green space, public health, and environmental justice. *Landscape and Urban Planning*, 125, 234–244.
+
+Haase, D. et al. (2014). A quantitative review of urban ecosystem service assessments: concepts, models, and implementation. *Ambio*, 43(4), 413–433.
+
+Oke, T. R. (1982). The energetic basis of the urban heat island. *Quarterly Journal of the Royal Meteorological Society*, 108(455), 1–24.
+
+Zhou, D., Xiao, J., Bonafoni, S., et al. (2014). Satellite remote sensing of surface urban heat islands: Progress, challenges, and perspectives. *Remote Sensing*, 6(11), 11993–12016.
+
+Boone, C. G., Buckley, G. L., Grove, J. M., & Sister, C. (2009). Parks and people: An environmental justice inquiry in Baltimore, Maryland. *Annals of the Association of American Geographers*, 99(4), 767–787.
+
+Batty, M. (2013). *The New Science of Cities*. MIT Press.
